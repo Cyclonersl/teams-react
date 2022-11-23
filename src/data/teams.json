@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "name": "Equipe 1",
+        "color": "#c2e1f6",
+        "status": "online"
+    },
+    {
+        "id": 2,
+        "name": "Equipe 2",
+        "color": "#5d6c76",
+        "status": "offline"
+    },
+    {
+        "id": 3,
+        "name": "Equipe 3",
+        "color": "#735d76",
+        "status": "deslogado"
+    }
+]

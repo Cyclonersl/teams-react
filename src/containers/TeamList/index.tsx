@@ -3,11 +3,14 @@ import { useEffect, useRef, useState } from "react";
 import { Dropdown } from 'primereact/dropdown';
 import { Button } from 'primereact/button';
 import { Panel, PanelHeaderTemplateOptions } from 'primereact/panel'
-import { Menu, MenuProps } from 'primereact/menu';
+import { Menu } from 'primereact/menu';
 
 import { Team } from "../../components/Team";
 import { ServiceProvider } from "../../model/ServiceProvider";
 import { TeamControlling } from "../../model/TeamControlling";
+
+import serviceProviderData from '../../data/service-provider.json';
+import teamsData from '../../data/teams.json'
 
 interface TeamListProps {
 }
@@ -66,8 +69,8 @@ function TeamList({ }: TeamListProps) {
     ]
 
     const loadServiceProviderData = async () => {
-        setServiceProviders([{ id: 1, name: "Prestadora 1" }, { id: 2, name: "Prestadora 2" }]);
-        setSelectedServiceProvider({ id: 1, name: "Prestadora 1" })
+        setServiceProviders(serviceProviderData);
+        setSelectedServiceProvider(serviceProviderData[0])
     }
 
     useEffect(() => {
@@ -79,26 +82,7 @@ function TeamList({ }: TeamListProps) {
             return;
 
         setDataLoading(true);
-        setTeams([
-            {
-                id: 1,
-                name: 'Equipe 1',
-                color: '#c2e1f6',
-                status: 'online'
-            },
-            {
-                id: 2,
-                name: 'Equipe 2',
-                color: '#5d6c76',
-                status: 'offline'
-            },
-            {
-                id: 3,
-                name: 'Equipe 3',
-                color: '#735d76',
-                status: 'deslogado'
-            }
-        ]);
+        setTeams(teamsData);
 
         setDataLoading(false);
     }, [selectedServiceProvider])

@@ -82,8 +82,8 @@ function Team({ team }: TeamProps) {
     ];
 
     const template = (options: PanelHeaderTemplateOptions) => {
-        return (<div>
-            <div className="bg-casan-gray-400 border-b-1 border-casan-gray-700  p-1 shadow-[0px 0px 5px #ddd] shadow-casan-gray-600 flex justify-between">
+        return (
+            <div className="bg-casan-gray-400 border-b-1  border-casan-gray-700  p-1 shadow-[0px 0px 5px #ddd] shadow-casan-gray-600 flex justify-between">
                 <div className='flex items-center'>
                     <div
                         className="w-6 h-6 text-white rounded-full flex items-center justify-center text-ssm mr-1"
@@ -112,11 +112,15 @@ function Team({ team }: TeamProps) {
                     </Button>
                 </div>
             </div>
-        </div>)
+        )
     }
 
     return <>
         <Panel headerTemplate={template} className="flex-1  min-w-[500px] max-w-[33%]">
+            <div className='flex gap-2'>
+                <span className='flex-1 text-center bg-casan-green-300 py-3 rounded-md text-white font-bold'>3 EXECUTADA</span>
+                <span className='flex-1 text-center bg-casan-red-200 py-3 rounded-md text-white font-bold'>1 RECUSADA</span>
+            </div>
             <div className="text-black">
                 Lista de Serviços
             </div>

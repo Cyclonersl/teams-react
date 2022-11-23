@@ -1,5 +1,5 @@
 interface StatusProps {
-    type: 'online' | 'offline' | 'deslogado'
+    type: string
 }
 
 function Status({ type }: StatusProps) {

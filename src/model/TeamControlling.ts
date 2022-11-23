@@ -4,5 +4,5 @@ export interface TeamControlling {
     name: string;
     services?: ScheduledService[];
     color: string;
-    status: 'online' | 'offline' | 'deslogado';
+    status: string;
 }
