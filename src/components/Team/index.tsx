@@ -4,6 +4,8 @@ import { Panel, PanelHeaderTemplateOptions } from 'primereact/panel';
 import { Menu } from 'primereact/menu';
 import { Button } from 'primereact/button';
 
+import { FaArrowDown, FaArrowUp, FaCog, FaSave } from "react-icons/fa"
+
 import { TeamControlling } from "../../model/TeamControlling";
 import { Status } from './status';
 import { ServicoProgramado } from '../ServicoProgramado';
@@ -88,29 +90,23 @@ function Team({ team }: TeamProps) {
                 <div className='flex items-center'>
                     <div
                         className="w-6 h-6 text-white rounded-full flex items-center justify-center text-ssm mr-1"
-                        style={{ backgroundColor: team.color }}>400</div>
+                        style={{ backgroundColor: team.color }}>{team.services?.length}</div>
                     <span
                         className="text-casan-green-800 font-bold ">{team.name}</span>
                     <Status
                         type={team.status} />
                 </div>
-                <div className='flex'>
+                <div className='flex gap-1 text-casan-green-800'>
+                    <Button disabled
+                        icon={<FaSave />}
+                        className='w-2 h-6 flex justify-center items-center ' />
+
+                    <Button icon={<FaArrowDown />}
+                        className='w-2 h-6 flex justify-center items-center ' />
                     <Button
-                        className='w-2 h-6 flex justify-center items-center '>
-                        <span
-                            className="pi pi-save" />
-                    </Button>
-                    <Button
-                        className='w-2 h-6 flex justify-center items-center '>
-                        <span
-                            className="pi pi-arrow-down" />
-                    </Button>
-                    <Button
+                        icon={<FaCog />}
                         className='w-2 h-6 flex justify-center items-center'
-                        onClick={(e) => refMenuTeam.current?.toggle(e)}>
-                        <span
-                            className="pi pi-cog" />
-                    </Button>
+                        onClick={(e) => refMenuTeam.current?.toggle(e)} />
                 </div>
             </div>
         )
@@ -126,8 +122,8 @@ function Team({ team }: TeamProps) {
                 {team.services?.map(servico => <ServicoProgramado servico={servico} />)}
             </div>
             <div className='flex gap-2'>
-                <Button icon="pi pi-save" iconPos='left' label='Salvar' className='flex-1' />
-                <Button icon="pi pi-arrow-up" className='flex-2' />
+                <Button disabled icon={<FaSave />} iconPos='left' label='Salvar' className='flex-1 font-bold' />
+                <Button icon={<FaArrowUp />} className='flex-2' />
             </div>
         </Panel>
         <Menu model={menuItens} popup ref={refMenuTeam} />

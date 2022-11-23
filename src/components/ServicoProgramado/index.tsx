@@ -1,4 +1,6 @@
 import { ScheduledService } from "../../model/ScheculedService"
+import { RiInformationFill, RiChat3Fill, RiCheckboxBlankLine } from "react-icons/ri"
+import { FaHome, FaRoad, FaInfoCircle, FaFileImage, FaComment, FaCodeBranch, FaLink, FaTimes, FaCheckSquare, FaRegCheckSquare, FaRegSquare, FaMapMarkerAlt } from "react-icons/fa"
 
 import { Checkbox } from 'primereact/checkbox';
 
@@ -18,22 +20,25 @@ function ServicoProgramado({ servico }: ServicoProgramadoProps) {
     return (
         <div className="bg-casan-gray-400 p-2">
             <div className={`${situacaoColor} text-white  flex justify-between items-center p-1`}>
-                <div className="flex items-center justify-center">
-                    <Checkbox className="mr-2" />
-                    <span className="text-sm">{situacaoDesc}</span>
-                    <span className="pi pi-info-circle mx-1" />
-                    <span className="pi pi-images    mx-1" />
-                    <span className="pi pi-comment mx-1" />
-                    <span className="pi pi-share-alt mx-1" />
-
+                <div className="flex items-center justify-center text-sm">
+                    <FaRegSquare className="mr-1" />
+                    <span className="text-sm mr-1">{situacaoDesc}</span>
+                    <div className="flex items-center justify-center gap-1">
+                        <FaInfoCircle />
+                        <FaFileImage />
+                        <FaComment />
+                        <FaCodeBranch />
+                    </div>
                 </div>
-                <span className="pi pi-times"></span>
+                <FaTimes />
             </div>
             <div className="text-sm">
-                <div>
-                    <a href="">
+                <div className="flex items-center gap-1/2">
+                    <FaHome className="mr-1" />
+                    <FaMapMarkerAlt />
+                    <a href="/" className="flex items-center gap-1">
                         <span>{`${servico.dtHoraSoltcao} ${servico.nrMatriculaColaborador}`}</span>
-                        <span className="pi pi-link ml-2"></span>
+                        <FaLink />
                     </a>
                 </div>
             </div>

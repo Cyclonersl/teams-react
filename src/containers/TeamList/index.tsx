@@ -11,6 +11,7 @@ import { TeamControlling } from "../../model/TeamControlling";
 
 import serviceProviderData from '../../data/service-provider.json';
 import { teamsData } from '../../data/teams-data'
+import { FaCog } from "react-icons/fa";
 
 interface TeamListProps {
 }
@@ -103,9 +104,7 @@ function TeamList({ }: TeamListProps) {
                 <span className="text-12 font-bold">3 / 102 selecionadas</span>
             </div>
 
-            <Button onClick={(e) => refMenuTeamList.current?.toggle(e)}>
-                <span className="pi pi-cog" />
-            </Button>
+            <Button icon={<FaCog />} onClick={(e) => refMenuTeamList.current?.toggle(e)} />
 
         </div>)
     }
