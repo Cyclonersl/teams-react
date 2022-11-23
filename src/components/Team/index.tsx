@@ -6,6 +6,7 @@ import { Button } from 'primereact/button';
 
 import { TeamControlling } from "../../model/TeamControlling";
 import { Status } from './status';
+import { ServicoProgramado } from '../ServicoProgramado';
 
 
 interface TeamProps {
@@ -116,13 +117,13 @@ function Team({ team }: TeamProps) {
     }
 
     return <>
-        <Panel headerTemplate={template} className="flex-1  min-w-[500px] max-w-[33%]">
+        <Panel headerTemplate={template} className="flex-1 min-w-fit">
             <div className='flex gap-2'>
                 <span className='flex-1 text-center bg-casan-green-300 py-3 rounded-md text-white font-bold'>3 EXECUTADA</span>
                 <span className='flex-1 text-center bg-casan-red-200 py-3 rounded-md text-white font-bold'>1 RECUSADA</span>
             </div>
-            <div className="text-black">
-                Lista de Serviços
+            <div className="grid grid-flow-row gap-2 my-2">
+                {team.services?.map(servico => <ServicoProgramado servico={servico} />)}
             </div>
             <div className='flex gap-2'>
                 <Button icon="pi pi-save" iconPos='left' label='Salvar' className='flex-1' />

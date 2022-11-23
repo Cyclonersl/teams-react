@@ -9,9 +9,9 @@ module.exports = {
       borderWidth: {
         1: '1px'
       },
-      colors: {        
+      colors: {
         casan: {
-          gray: {            
+          gray: {
             400: '#e5ebe8',
             700: '#dddddd'
           },
@@ -23,12 +23,16 @@ module.exports = {
             800: '#00665e'
           },
           blue: {
-            200: '#4b96bc'
+            200: '#4b96bc',
+            400: '#039BE5'
           },
           red: {
             200: '#EA5555',
             400: '#b50000',
-            
+
+          },
+          yellow: {
+            400: '#FBC400'
           }
         }
       },
@@ -36,7 +40,7 @@ module.exports = {
         ssm: '0.65em',
         12: '0.75em'
       }
-    },    
+    },
   },
   plugins: [],
 }

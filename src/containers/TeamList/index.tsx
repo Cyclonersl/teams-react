@@ -10,7 +10,7 @@ import { ServiceProvider } from "../../model/ServiceProvider";
 import { TeamControlling } from "../../model/TeamControlling";
 
 import serviceProviderData from '../../data/service-provider.json';
-import teamsData from '../../data/teams.json'
+import { teamsData } from '../../data/teams-data'
 
 interface TeamListProps {
 }
@@ -119,12 +119,6 @@ function TeamList({ }: TeamListProps) {
 
         <Menu model={menuItens} popup ref={refMenuTeamList} />
     </>
-
-
-
-
-
-
 
 }
 
