@@ -3,4 +3,9 @@ export interface ScheduledService {
     nrMatriculaColaborador: number;
     tpColaborador: string;
     situacao: string;
+    codigoServico: number;
+    descricaoServico: string;
+    agencia: string;
+    distritoOperacional: string;
+    endereco: string;
 }

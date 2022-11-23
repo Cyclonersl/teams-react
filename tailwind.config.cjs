@@ -13,6 +13,7 @@ module.exports = {
         casan: {
           gray: {
             400: '#e5ebe8',
+            500: '#555555',
             700: '#dddddd'
           },
           green: {
@@ -33,7 +34,10 @@ module.exports = {
           },
           yellow: {
             400: '#FBC400'
-          }
+          },
+          orange: {
+            400: '#FFA63C'
+          },
         }
       },
       fontSize: {

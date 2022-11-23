@@ -18,7 +18,7 @@ function ServicoProgramado({ servico }: ServicoProgramadoProps) {
     const situacaoDesc = servico.situacao.replace("_", " ")
 
     return (
-        <div className="bg-casan-gray-400 p-2">
+        <div className="bg-casan-gray-400 p-2 text-sm">
             <div className={`${situacaoColor} text-white  flex justify-between items-center p-1`}>
                 <div className="flex items-center justify-center text-sm">
                     <FaRegSquare className="mr-1" />
@@ -40,6 +40,22 @@ function ServicoProgramado({ servico }: ServicoProgramadoProps) {
                         <span>{`${servico.dtHoraSoltcao} ${servico.nrMatriculaColaborador}`}</span>
                         <FaLink />
                     </a>
+                </div>
+                <div className="text-casan-gray-500 text-[12px]">
+                    <div className="flex items-center gap-1">
+                        <span className="px-1 bg-casan-orange-400 text-white font-bold rounded-md">{servico.codigoServico}</span>
+                        {servico.descricaoServico}
+                    </div>
+                    <div className="flex">
+                        {`${servico.agencia} - ${servico.distritoOperacional}`}
+                    </div>
+                    <div>
+                        {servico.endereco}
+                    </div>
+                    <div className="flex items-center text-[11px] gap-1">
+                        <span className="font-bold">Tempo desde a última programação para a equipe:</span>
+                        <span>1D 11:00</span>
+                    </div>
                 </div>
             </div>
         </div>

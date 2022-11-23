@@ -11,13 +11,23 @@ const teamsData: TeamControlling[] = [
                 dtHoraSoltcao: '20/11/2022 13:04',
                 nrMatriculaColaborador: 9891,
                 tpColaborador: 'S',
-                situacao: "EM_ROTA"
+                situacao: "EM_ROTA",
+                codigoServico: 3202,
+                descricaoServico: "LA DESLOC. CAV. DN QUALQUER I.C.",
+                agencia: "RIO DO SUL",
+                distritoOperacional: 'RIO DO SUL',
+                endereco: "RUA GEORG LUCAS - 83"
             },
             {
                 dtHoraSoltcao: '13/10/2022 11:04',
                 nrMatriculaColaborador: 9891,
                 tpColaborador: 'S',
-                situacao: "PROGRAMADA"
+                situacao: "PROGRAMADA",
+                codigoServico: 1038,
+                descricaoServico: "AC VER. LEITURA",
+                agencia: "FLORIANÓPOLIS COSTA NORTE",
+                distritoOperacional: 'CANASVIEIRAS',
+                endereco: "RUA ARARAS - 193"
             }
         ]
     },
@@ -31,7 +41,12 @@ const teamsData: TeamControlling[] = [
                 dtHoraSoltcao: '23/11/2022 08:01',
                 nrMatriculaColaborador: 9891,
                 tpColaborador: 'S',
-                situacao: "EXECUTANDO"
+                situacao: "EXECUTANDO",
+                codigoServico: 7322,
+                descricaoServico: "ET - MANUTENÇÃO EM SISTEMA DE TELEMETRIA E SUPERV.",
+                agencia: "BIGUAÇU",
+                distritoOperacional: 'BIGUAÇU',
+                endereco: "AV. TORRES"
             }
         ]
     },
