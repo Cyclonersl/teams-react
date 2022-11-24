@@ -11,6 +11,24 @@ module.exports = {
       },
       colors: {
         casan: {
+          online: {
+            400: '#30c54f'
+          },
+          offline: {
+            400: '#b50000'
+          },
+          logada: {
+            400: '#4b96bc'
+          },
+          executado: {
+            400: '#26ae00'
+          },
+          recusado: {
+            400: '#ea5555'
+          },
+          programado: {
+            400: '#039be5'
+          },
           gray: {
             400: '#e5ebe8',
             500: '#555555',
@@ -30,13 +48,12 @@ module.exports = {
           red: {
             200: '#EA5555',
             400: '#b50000',
-
           },
           yellow: {
             400: '#FBC400'
           },
           orange: {
-            400: '#FFA63C'
+            400: '#ff7009'
           },
         }
       },

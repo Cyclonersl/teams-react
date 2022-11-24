@@ -1,9 +1,9 @@
-import { TeamControlling } from "../model/TeamControlling";
+import { EquipeModel } from './../model/Equipe';
 
-const teamsData: TeamControlling[] = [
+const teamsData: EquipeModel[] = [
     {
         "id": 1,
-        "name": "Equipe 1",
+        "name": "EquipeModel 1",
         "color": "#c2e1f6",
         "status": "online",
         services: [
@@ -33,7 +33,7 @@ const teamsData: TeamControlling[] = [
     },
     {
         "id": 2,
-        "name": "Equipe 2",
+        "name": "EquipeModel 2",
         "color": "#5d6c76",
         "status": "offline",
         services: [
@@ -52,7 +52,7 @@ const teamsData: TeamControlling[] = [
     },
     {
         "id": 3,
-        "name": "Equipe 3",
+        "name": "EquipeModel 3",
         "color": "#735d76",
         "status": "deslogado",
         services: []

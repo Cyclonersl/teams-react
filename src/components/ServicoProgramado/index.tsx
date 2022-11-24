@@ -1,4 +1,4 @@
-import { ScheduledService } from "../../model/ScheculedService"
+import { ScheduledService } from "../../model/Servico"
 import { RiInformationFill, RiChat3Fill, RiCheckboxBlankLine } from "react-icons/ri"
 import { FaHome, FaRoad, FaInfoCircle, FaFileImage, FaComment, FaCodeBranch, FaLink, FaTimes, FaCheckSquare, FaRegCheckSquare, FaRegSquare, FaMapMarkerAlt } from "react-icons/fa"
 

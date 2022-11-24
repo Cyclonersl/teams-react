@@ -6,16 +6,16 @@ import { Button } from 'primereact/button';
 
 import { FaArrowDown, FaArrowUp, FaCog, FaSave } from "react-icons/fa"
 
-import { TeamControlling } from "../../model/TeamControlling";
+import { EquipeModel } from "../../model/Equipe";
 import { Status } from './status';
 import { ServicoProgramado } from '../ServicoProgramado';
 
 
-interface TeamProps {
-    team: TeamControlling
+interface ListaEquipeProps {
+    equipe: EquipeModel
 }
 
-function Team({ team }: TeamProps) {
+function Equipe({ equipe }: ListaEquipeProps) {
     const refMenuTeam = useRef<Menu>(null);
 
     const menuItens = [
@@ -90,11 +90,11 @@ function Team({ team }: TeamProps) {
                 <div className='flex items-center'>
                     <div
                         className="w-6 h-6 text-white rounded-full flex items-center justify-center text-ssm mr-1"
-                        style={{ backgroundColor: team.color }}>{team.services?.length}</div>
+                        style={{ backgroundColor: equipe.color }}>{equipe.services?.length}</div>
                     <span
-                        className="text-casan-green-800 font-bold ">{team.name}</span>
+                        className="text-casan-green-800 font-bold ">{equipe.name}</span>
                     <Status
-                        type={team.status} />
+                        type={equipe.status} />
                 </div>
                 <div className='flex gap-1 text-casan-green-800'>
                     <Button disabled
@@ -115,11 +115,11 @@ function Team({ team }: TeamProps) {
     return <>
         <Panel headerTemplate={template} className="flex-1 min-w-fit">
             <div className='flex gap-2'>
-                <span className='flex-1 text-center bg-casan-green-300 py-3 rounded-md text-white font-bold'>3 EXECUTADA</span>
-                <span className='flex-1 text-center bg-casan-red-200 py-3 rounded-md text-white font-bold'>1 RECUSADA</span>
+                <span className='flex-1 text-center bg-casan-executado-400 py-3 rounded-md text-white font-bold'>3 EXECUTADA</span>
+                <span className='flex-1 text-center bg-casan-recusado-400 py-3 rounded-md text-white font-bold'>1 RECUSADA</span>
             </div>
             <div className="grid grid-flow-row gap-2 my-2">
-                {team.services?.map(servico => <ServicoProgramado servico={servico} />)}
+                {equipe.services?.map(servico => <ServicoProgramado servico={servico} />)}
             </div>
             <div className='flex gap-2'>
                 <Button disabled icon={<FaSave />} iconPos='left' label='Salvar' className='flex-1 font-bold' />
@@ -127,8 +127,7 @@ function Team({ team }: TeamProps) {
             </div>
         </Panel>
         <Menu model={menuItens} popup ref={refMenuTeam} />
-
     </>
 }
 
-export { Team }
+export { Equipe }

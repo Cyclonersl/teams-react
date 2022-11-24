@@ -5,24 +5,24 @@ import { Button } from 'primereact/button';
 import { Panel, PanelHeaderTemplateOptions } from 'primereact/panel'
 import { Menu } from 'primereact/menu';
 
-import { Team } from "../../components/Team";
-import { ServiceProvider } from "../../model/ServiceProvider";
-import { TeamControlling } from "../../model/TeamControlling";
+import { Equipe } from "../../components/Equipe";
+import { PrestadoraModel } from "../../model/Prestadora";
+import { EquipeModel } from "../../model/Equipe";
 
-import serviceProviderData from '../../data/service-provider.json';
+import PrestadoraData from '../../data/service-provider.json';
 import { teamsData } from '../../data/teams-data'
-import { FaCog } from "react-icons/fa";
+import { FaCog, FaFilter } from "react-icons/fa";
 
-interface TeamListProps {
+interface ListaEquipeProps {
 }
 
-function TeamList({ }: TeamListProps) {
+function ListaEquipe({ }: ListaEquipeProps) {
 
-    const [selectedServiceProvider, setSelectedServiceProvider] = useState<ServiceProvider>();
-    const [serviceProviders, setServiceProviders] = useState<ServiceProvider[]>([]);
-    const [teams, setTeams] = useState<TeamControlling[]>([]);
+    const [selectedPrestadora, setSelectedPrestadora] = useState<PrestadoraModel>();
+    const [Prestadoras, setPrestadoras] = useState<PrestadoraModel[]>([]);
+    const [teams, setTeams] = useState<EquipeModel[]>([]);
     const [dataLoading, setDataLoading] = useState<boolean>(false);
-    const refMenuTeamList = useRef<Menu>(null);
+    const refMenuListaEquipe = useRef<Menu>(null);
 
     const menuItens = [
         {
@@ -69,24 +69,24 @@ function TeamList({ }: TeamListProps) {
         }
     ]
 
-    const loadServiceProviderData = async () => {
-        setServiceProviders(serviceProviderData);
-        setSelectedServiceProvider(serviceProviderData[0])
+    const loadPrestadoraData = async () => {
+        setPrestadoras(PrestadoraData);
+        setSelectedPrestadora(PrestadoraData[0])
     }
 
     useEffect(() => {
-        loadServiceProviderData();
+        loadPrestadoraData();
     }, [])
 
     useEffect(() => {
-        if (!selectedServiceProvider)
+        if (!selectedPrestadora)
             return;
 
         setDataLoading(true);
         setTeams(teamsData);
 
         setDataLoading(false);
-    }, [selectedServiceProvider])
+    }, [selectedPrestadora])
 
     if (dataLoading)
         <h1>Loading...</h1>
@@ -94,17 +94,19 @@ function TeamList({ }: TeamListProps) {
     const headerTemplate = (options: PanelHeaderTemplateOptions) => {
         return (<div className="flex justify-between bg-gradient-to-t from-casan-green-600 to-casan-green-400 border-casan-green-400 rounded-t p-1 h-9">
             <Dropdown optionLabel="name"
-                value={selectedServiceProvider}
-                options={serviceProviders}
-                onChange={(e) => setSelectedServiceProvider(e.value)}
+                value={selectedPrestadora}
+                options={Prestadoras}
+                onChange={(e) => setSelectedPrestadora(e.value)}
 
             />
             <div className="bg-casan-gray-400 flex justify-between border-1 border-white pr-1 items-center h-7">
-                <span className="pi pi-filter bg-casan-green-200 py-2 px-3 mr-2 text-ssm" />
+                <span className="bg-casan-green-200 py-2 px-3 mr-2 text-ssm text-white">
+                    <FaFilter />
+                </span>
                 <span className="text-12 font-bold">3 / 102 selecionadas</span>
             </div>
 
-            <Button icon={<FaCog />} onClick={(e) => refMenuTeamList.current?.toggle(e)} />
+            <Button icon={<FaCog />} onClick={(e) => refMenuListaEquipe.current?.toggle(e)} />
 
         </div>)
     }
@@ -112,13 +114,13 @@ function TeamList({ }: TeamListProps) {
     return <>
         <Panel headerTemplate={headerTemplate} className="m-2">
             <div className="flex flex-wrap gap-2">
-                {teams.map(team => <Team team={team} key={team.id} />)}
+                {teams.map(team => <Equipe equipe={team} key={team.id} />)}
             </div>
         </Panel>
 
-        <Menu model={menuItens} popup ref={refMenuTeamList} />
+        <Menu model={menuItens} popup ref={refMenuListaEquipe} />
     </>
 
 }
 
-export { TeamList }
+export { ListaEquipe }

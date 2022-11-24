@@ -1,4 +1,4 @@
-export interface ScheduledService {
+export interface ServicoProgramadoModel {
     dtHoraSoltcao: string;
     nrMatriculaColaborador: number;
     tpColaborador: string;

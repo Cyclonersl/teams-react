@@ -24,7 +24,7 @@ html {
 }
 
 .p-button:enabled:focus {
-    @apply bg-casan-green-400 border-casan-green-800 text-white
+    @apply bg-casan-green-400 border-casan-green-800 text-white shadow-transparent
 }
 
 .p-dropdown-label {
