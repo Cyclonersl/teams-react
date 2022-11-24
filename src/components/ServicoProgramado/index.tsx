@@ -1,18 +1,18 @@
-import { ScheduledService } from "../../model/Servico"
+import { ServicoProgramadoModel } from "../../model/Servico"
 import { RiInformationFill, RiChat3Fill, RiCheckboxBlankLine } from "react-icons/ri"
 import { FaHome, FaRoad, FaInfoCircle, FaFileImage, FaComment, FaCodeBranch, FaLink, FaTimes, FaCheckSquare, FaRegCheckSquare, FaRegSquare, FaMapMarkerAlt } from "react-icons/fa"
 
 import { Checkbox } from 'primereact/checkbox';
 
 interface ServicoProgramadoProps {
-    servico: ScheduledService;
+    servico: ServicoProgramadoModel;
 }
 
 function ServicoProgramado({ servico }: ServicoProgramadoProps) {
 
-    const situacaoColor = servico.situacao === "PROGRAMADA" ? "bg-casan-blue-400" :
-        servico.situacao === "EM_ROTA" ? "bg-casan-yellow-400" :
-            servico.situacao === "EXECUTANDO" ? "bg-casan-green-400" :
+    const situacaoColor = servico.situacao === "PROGRAMADA" ? "bg-casan-programado-400" :
+        servico.situacao === "EM_ROTA" ? "bg-casan-emrota-400" :
+            servico.situacao === "EXECUTANDO" ? "bg-casan-executando-400" :
                 "bg-casan-gray-400";
 
     const situacaoDesc = servico.situacao.replace("_", " ")
@@ -35,8 +35,10 @@ function ServicoProgramado({ servico }: ServicoProgramadoProps) {
             <div className="text-sm">
                 <div className="flex items-center gap-1/2">
                     <FaHome className="mr-1" />
-                    <FaMapMarkerAlt />
-                    <a href="/" className="flex items-center gap-1">
+                    <a href="/" className="hover:text-casan-orange-400">
+                        <FaMapMarkerAlt />
+                    </a>
+                    <a href="/" className="flex items-center gap-1 hover:text-casan-orange-400">
                         <span>{`${servico.dtHoraSoltcao} ${servico.nrMatriculaColaborador}`}</span>
                         <FaLink />
                     </a>

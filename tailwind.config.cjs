@@ -23,11 +23,17 @@ module.exports = {
           executado: {
             400: '#26ae00'
           },
+          executando: {
+            400: '#00ae9b'
+          },
           recusado: {
             400: '#ea5555'
           },
           programado: {
             400: '#039be5'
+          },
+          emrota: {
+            400: '#f9cb6a'
           },
           gray: {
             400: '#e5ebe8',
