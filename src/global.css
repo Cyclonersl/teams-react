@@ -16,7 +16,7 @@ html {
 
 
 .p-button {
-    @apply bg-casan-gray-400 border-casan-gray-700 text-casan-green-400
+    @apply bg-casan-gray-400 border-casan-gray-700 text-casan-green-500 
 }
 
 .p-button:enabled:hover {
