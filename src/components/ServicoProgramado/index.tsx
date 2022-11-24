@@ -1,8 +1,6 @@
-import { ServicoProgramadoModel } from "../../model/Servico"
-import { RiInformationFill, RiChat3Fill, RiCheckboxBlankLine } from "react-icons/ri"
-import { FaHome, FaRoad, FaInfoCircle, FaFileImage, FaComment, FaCodeBranch, FaLink, FaTimes, FaCheckSquare, FaRegCheckSquare, FaRegSquare, FaMapMarkerAlt } from "react-icons/fa"
-
-import { Checkbox } from 'primereact/checkbox';
+import { ServicoProgramadoModel } from "../../model/ServicoProgramado"
+import { FaHome, FaRoad, FaInfoCircle, FaFileImage, FaComment, FaCodeBranch, FaLink, FaTimes, FaRegCheckSquare, FaRegSquare, FaMapMarkerAlt } from "react-icons/fa"
+import TagCodigoServico from "../TagCodigoServico";
 
 interface ServicoProgramadoProps {
     servico: ServicoProgramadoModel;
@@ -45,7 +43,7 @@ function ServicoProgramado({ servico }: ServicoProgramadoProps) {
                 </div>
                 <div className="text-casan-gray-500 text-[12px]">
                     <div className="flex items-center gap-1">
-                        <span className="px-1 bg-casan-orange-400 text-white font-bold rounded-md">{servico.codigoServico}</span>
+                        <TagCodigoServico codigo={servico.codigoServico} />
                         {servico.descricaoServico}
                     </div>
                     <div className="flex">

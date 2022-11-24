@@ -16,7 +16,7 @@ function FiltrosProgramacao() {
     }
 
     return (
-        <Panel headerTemplate={template} className="m-2">
+        <Panel headerTemplate={template} className="ml-2 my-2">
             <div className='grid grid-cols-2 gap-1 text-sm items-center'>
                 <label>Data inicial:</label>
                 <Calendar className="h-[30px]" showTime />
@@ -27,12 +27,14 @@ function FiltrosProgramacao() {
                 <label>Agência:</label>
                 <Dropdown />
                 <label>Logradouro:</label>
-                <div className='flex gap-1 h-[30px]'>
-                    <div className='p-inputgroup'>
-                        <InputText className='max-w-[60px]' />
-                        <Button icon={<FaSearch />} />
+                <div className='flex items-center gap-1'>
+                    <div className='w-[70px]'>
+                        <div className='p-inputgroup h-[30px]'>
+                            <InputText />
+                            <Button icon={<FaSearch />} />
+                        </div>
                     </div>
-                    <InputText disabled />
+                    <span className='flex-1 border-1 p-1 rounded-md'>ASD</span>
                 </div>
 
                 <label htmlFor="area-risco">Excluir Area de Risco</label>

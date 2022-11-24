@@ -60,7 +60,7 @@ module.exports = {
             400: '#FBC400'
           },
           orange: {
-            400: '#ff7009'
+            400: '#ffa63c'
           },
         }
       },

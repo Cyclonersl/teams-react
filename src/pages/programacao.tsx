@@ -1,13 +1,13 @@
 
 
-import { FiltrosProgramacao } from "../containers/FiltrosProgramacao";
+import { FiltrosProgramacao } from "../containers/ServicosPendentes/filtros";
 import { ListaEquipe } from "../containers/ListaEquipe";
 import { Mapa } from "../containers/Mapa";
 import { ServicosPendentes } from "../containers/ServicosPendentes";
 
 function ProgramacaoScreen() {
     return <div className="flex">
-        <div>
+        <div className="max-w-lg">
             <FiltrosProgramacao />
             <ServicosPendentes />
         </div>

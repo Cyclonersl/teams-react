@@ -9,6 +9,7 @@ import { FaArrowDown, FaArrowUp, FaCog, FaSave } from "react-icons/fa"
 import { EquipeModel } from "../../model/Equipe";
 import { Status } from './status';
 import { ServicoProgramado } from '../ServicoProgramado';
+import QuantidadeSituacaoServico from '../QuantidadeSituacaoServico';
 
 
 interface ListaEquipeProps {
@@ -115,11 +116,11 @@ function Equipe({ equipe }: ListaEquipeProps) {
     return <>
         <Panel headerTemplate={template} className="flex-1 min-w-fit">
             <div className='flex gap-2'>
-                <span className='flex-1 text-center bg-casan-executado-400 py-3 rounded-md text-white font-bold'>3 EXECUTADA</span>
-                <span className='flex-1 text-center bg-casan-recusado-400 py-3 rounded-md text-white font-bold'>1 RECUSADA</span>
+                <QuantidadeSituacaoServico valor={1} situacao="EXECUTADO" />
+                <QuantidadeSituacaoServico valor={3} situacao="RECUSADO" />
             </div>
             <div className="grid grid-flow-row gap-2 my-2">
-                {equipe.services?.map(servico => <ServicoProgramado servico={servico} />)}
+                {equipe.services?.map(servico => <ServicoProgramado servico={servico} key={servico.dtHoraSoltcao + servico.nrMatriculaColaborador} />)}
             </div>
             <div className='flex gap-2'>
                 <Button disabled icon={<FaSave />} iconPos='left' label='Salvar' className='flex-1 font-bold' />

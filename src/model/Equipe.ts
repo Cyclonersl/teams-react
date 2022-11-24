@@ -1,4 +1,4 @@
-import { ServicoProgramadoModel } from './Servico';
+import { ServicoProgramadoModel } from './ServicoProgramado';
 export interface EquipeModel {
     id: number;
     name: string;
