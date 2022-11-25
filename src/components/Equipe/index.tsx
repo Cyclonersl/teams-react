@@ -114,13 +114,13 @@ function Equipe({ equipe }: ListaEquipeProps) {
     }
 
     return <>
-        <Panel headerTemplate={template} className="flex-1 min-w-fit">
+        <Panel headerTemplate={template} className="flex-1 min-w-[390px]">
             <div className='flex gap-2'>
                 <QuantidadeSituacaoServico valor={1} situacao="EXECUTADO" />
                 <QuantidadeSituacaoServico valor={3} situacao="RECUSADO" />
             </div>
             <div className="grid grid-flow-row gap-2 my-2">
-                {equipe.services?.map(servico => <ServicoProgramado servico={servico} key={servico.dtHoraSoltcao + servico.nrMatriculaColaborador} />)}
+                {equipe.services?.map((servico, index) => <ServicoProgramado servico={servico} key={servico.dtHoraSoltcao + servico.nrMatriculaColaborador + "_" + index} />)}
             </div>
             <div className='flex gap-2'>
                 <Button disabled icon={<FaSave />} iconPos='left' label='Salvar' className='flex-1 font-bold' />

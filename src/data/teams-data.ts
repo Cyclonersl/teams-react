@@ -55,7 +55,140 @@ const teamsData: EquipeModel[] = [
         "name": "EquipeModel 3",
         "color": "#735d76",
         "status": "deslogado",
+        services: [
+            {
+                dtHoraSoltcao: '23/11/2022 08:01',
+                nrMatriculaColaborador: 9891,
+                tpColaborador: 'S',
+                situacao: "EXECUTANDO",
+                codigoServico: 7322,
+                descricaoServico: "ET - MANUTENÇÃO EM SISTEMA DE TELEMETRIA E SUPERV.",
+                agencia: "BIGUAÇU",
+                distritoOperacional: 'BIGUAÇU',
+                endereco: "AV. TORRES"
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "name": "EquipeModel 4",
+        "color": "#735176",
+        "status": "deslogado",
         services: []
+    },
+    {
+        "id": 5,
+        "name": "EquipeModel 5",
+        "color": "#732d76",
+        "status": "deslogado",
+        services: [
+            {
+                dtHoraSoltcao: '23/11/2022 08:01',
+                nrMatriculaColaborador: 9891,
+                tpColaborador: 'S',
+                situacao: "EXECUTANDO",
+                codigoServico: 7322,
+                descricaoServico: "ET - MANUTENÇÃO EM SISTEMA DE TELEMETRIA E SUPERV.",
+                agencia: "BIGUAÇU",
+                distritoOperacional: 'BIGUAÇU',
+                endereco: "AV. TORRES"
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "name": "EquipeModel 6",
+        "color": "#715d76",
+        "status": "deslogado",
+        services: [
+            {
+                dtHoraSoltcao: '23/11/2022 08:01',
+                nrMatriculaColaborador: 9891,
+                tpColaborador: 'S',
+                situacao: "EXECUTANDO",
+                codigoServico: 7322,
+                descricaoServico: "ET - MANUTENÇÃO EM SISTEMA DE TELEMETRIA E SUPERV.",
+                agencia: "BIGUAÇU",
+                distritoOperacional: 'BIGUAÇU',
+                endereco: "AV. TORRES"
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "name": "EquipeModel 6",
+        "color": "#715d76",
+        "status": "deslogado",
+        services: [
+            {
+                dtHoraSoltcao: '23/11/2022 08:01',
+                nrMatriculaColaborador: 9891,
+                tpColaborador: 'S',
+                situacao: "EXECUTANDO",
+                codigoServico: 7322,
+                descricaoServico: "ET - MANUTENÇÃO EM SISTEMA DE TELEMETRIA E SUPERV.",
+                agencia: "BIGUAÇU",
+                distritoOperacional: 'BIGUAÇU',
+                endereco: "AV. TORRES"
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "name": "EquipeModel 6",
+        "color": "#715d76",
+        "status": "deslogado",
+        services: [
+            {
+                dtHoraSoltcao: '23/11/2022 08:01',
+                nrMatriculaColaborador: 9891,
+                tpColaborador: 'S',
+                situacao: "EXECUTANDO",
+                codigoServico: 7322,
+                descricaoServico: "ET - MANUTENÇÃO EM SISTEMA DE TELEMETRIA E SUPERV.",
+                agencia: "BIGUAÇU",
+                distritoOperacional: 'BIGUAÇU',
+                endereco: "AV. TORRES"
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "name": "EquipeModel 6",
+        "color": "#715d76",
+        "status": "deslogado",
+        services: [
+            {
+                dtHoraSoltcao: '23/11/2022 08:01',
+                nrMatriculaColaborador: 9891,
+                tpColaborador: 'S',
+                situacao: "EXECUTANDO",
+                codigoServico: 7322,
+                descricaoServico: "ET - MANUTENÇÃO EM SISTEMA DE TELEMETRIA E SUPERV.",
+                agencia: "BIGUAÇU",
+                distritoOperacional: 'BIGUAÇU',
+                endereco: "AV. TORRES"
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "name": "EquipeModel 6",
+        "color": "#715d76",
+        "status": "deslogado",
+        services: [
+            {
+                dtHoraSoltcao: '23/11/2022 08:01',
+                nrMatriculaColaborador: 9891,
+                tpColaborador: 'S',
+                situacao: "EXECUTANDO",
+                codigoServico: 7322,
+                descricaoServico: "ET - MANUTENÇÃO EM SISTEMA DE TELEMETRIA E SUPERV.",
+                agencia: "BIGUAÇU",
+                distritoOperacional: 'BIGUAÇU',
+                endereco: "AV. TORRES"
+            }
+        ]
     }
 ]
 

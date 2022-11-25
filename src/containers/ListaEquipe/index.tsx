@@ -117,7 +117,7 @@ function ListaEquipe({ }: ListaEquipeProps) {
     return <>
         <Panel headerTemplate={headerTemplate} className="m-2">
             <div className="flex flex-wrap gap-2">
-                {equipes.map(equipe => <Equipe equipe={equipe} key={equipe.id} />)}
+                {equipes.map((equipe, index) => <Equipe equipe={equipe} key={equipe.id + "_ " + index} />)}
             </div>
         </Panel>
 
