@@ -16,7 +16,7 @@ function FiltrosProgramacao() {
     }
 
     return (
-        <Panel headerTemplate={template} className="ml-2 my-2">
+        <Panel header="Filtros" toggleable className="ml-2 my-2" >
             <div className='grid grid-cols-2 gap-1 text-sm items-center'>
                 <label>Data inicial:</label>
                 <Calendar className="h-[30px]" showTime />

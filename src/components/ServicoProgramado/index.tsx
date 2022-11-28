@@ -20,7 +20,7 @@ function ServicoProgramado({ servico }: ServicoProgramadoProps) {
         <div className="bg-casan-gray-400 p-2 text-sm">
             <div className={`${situacaoColor} text-white  flex justify-between items-center p-1`}>
                 <div className="flex items-center justify-center text-sm">
-                    <FaRegSquare className="mr-1" />
+                    {servico.situacao === "PROGRAMADA" && <FaRegSquare className="mr-1" />}
                     <span className="text-sm mr-1">{situacaoDesc}</span>
                     <div className="flex items-center justify-center gap-1">
                         <FaInfoCircle />

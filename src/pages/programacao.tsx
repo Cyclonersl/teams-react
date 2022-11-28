@@ -1,13 +1,13 @@
 import { useState } from "react";
 
 import { Button } from "primereact/button"
-import { SpeedDial } from 'primereact/speeddial';
-import { Tooltip } from 'primereact/tooltip'
+import { Sidebar } from 'primereact/sidebar'
 
 import { FiltrosProgramacao } from "../containers/ServicosPendentes/filtros";
 import { ListaEquipe } from "../containers/ListaEquipe";
 import { Mapa } from "../containers/Mapa";
 import { ServicosPendentes } from "../containers/ServicosPendentes";
+import { FaCalendarPlus } from "react-icons/fa";
 
 
 const items = [
@@ -22,6 +22,8 @@ const items = [
 
 function ProgramacaoScreen() {
 
+    const [openProgramacao, setOpenProgramacao] = useState<boolean>(false);
+
     return (
         <>
             <div className="mx-2 mt-2 gap-2">
@@ -31,18 +33,22 @@ function ProgramacaoScreen() {
                 </div>
             </div>
             <div className="flex">
-                <div className={`h-full top-0 p-2 max-w-lg bg-white z-50 overflow-auto lg:h-fit lg:block lg:p-0`}>
-                    <FiltrosProgramacao />
-                    <ServicosPendentes />
+                <div className="mt-2 ml-2 p-2 rounded-md bg-casan-green-600 h-screen sticky top-0">
+                    <Button
+                        icon={<FaCalendarPlus />}
+                        onClick={() => setOpenProgramacao(true)}
+                        tooltip="Programar Serviços" />
                 </div>
-                {/*<div className="w-9 m-2 border-1 rounded-md h-[calc(100vh_-_65px)] bg-casan-gray-400 border-casan-gray-500">
-
-                </div> */}
                 <div className={`flex-1`}>
                     <Mapa />
                     <ListaEquipe />
                 </div>
             </div >
+
+            <Sidebar visible={openProgramacao} position="left" className="p-sidebar-md" onHide={() => setOpenProgramacao(false)}>
+                <FiltrosProgramacao />
+                <ServicosPendentes />
+            </Sidebar>
 
         </>
     )

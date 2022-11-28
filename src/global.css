@@ -3,7 +3,8 @@
 @tailwind utilities;
 
 :root {
-    --focus-ring: @apply border-casan-green-800
+    --focus-ring: @apply border-casan-green-800;
+    --surface-ground: '#60C0B8';
 }
 
 html {
@@ -45,4 +46,8 @@ html {
 
 .p-menu .p-menuitem-link {
     @apply text-12
+}
+
+.p-panel .p-panel-header {
+    @apply bg-gradient-to-t from-casan-green-600 to-casan-green-400 border-casan-green-400 rounded-t text-white font-bold text-sm
 }
