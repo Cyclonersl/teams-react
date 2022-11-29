@@ -1,6 +1,8 @@
 import { EquipeModel } from './../../model/Equipe';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import EquipeDataService from '../services/EquipeDataService';
+import { ServicoModel } from '../../model/Servico';
+import { ServicoProgramadoModel } from '../../model/ServicoProgramado';
 
 interface statePros {
     chaves: number[],
@@ -16,6 +18,11 @@ export const carregarEquipes = createAsyncThunk("equipes/carregar", async (prest
     const response = await EquipeDataService.carregarEquipesPrestadora(prestadoraId);
 
     return (response.data) as EquipeModel[]
+})
+
+export const carregarServicos = createAsyncThunk("equipes/servicos", async (equipeId: number) => {
+    const response = await EquipeDataService.carregarServicosEquipe(equipeId);
+    return (response.data) as ServicoProgramadoModel[];
 })
 
 const equipesSlice = createSlice({
@@ -41,6 +48,23 @@ const equipesSlice = createSlice({
             state.carregando = false;
             state.chaves = chaves;
             state.dados = map;
+        })
+
+        builder.addCase(carregarServicos.fulfilled, (state, { payload }) => {
+            const map : { [key: string]: ServicoProgramadoModel[] } = payload.reduce((map: { [key: string]: ServicoProgramadoModel[] }, servico) => {
+                if (!map[servico.equipeId])
+                    map[servico.equipeId] = [];
+                
+                map[servico.equipeId].push(servico);
+                return map;
+            }, {})
+
+            Object.keys(map).forEach(key => {
+                state.dados[key].services = map[key];
+            }
+            )
+
+
         })
     },
     reducers: {

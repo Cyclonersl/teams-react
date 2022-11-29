@@ -1,4 +1,4 @@
-import { ReactElement, useRef } from 'react';
+import { ReactElement, useEffect, useRef } from 'react';
 
 import { Panel, PanelHeaderTemplateOptions } from 'primereact/panel';
 import { Menu } from 'primereact/menu';
@@ -10,6 +10,8 @@ import { EquipeModel } from "../../model/Equipe";
 import { Status } from './status';
 import { ServicoProgramado } from '../ServicoProgramado';
 import QuantidadeSituacaoServico from '../QuantidadeSituacaoServico';
+import { useAppDispatch } from '../../app/hooks';
+import { carregarServicos } from '../../app/slices/equipes';
 
 
 interface ListaEquipeProps {
@@ -18,6 +20,12 @@ interface ListaEquipeProps {
 
 function Equipe({ equipe }: ListaEquipeProps) {
     const refMenuTeam = useRef<Menu>(null);
+    const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        if (equipe)
+            dispatch(carregarServicos(equipe.id));
+    }, [equipe.id])
 
     const menuItens = [
         {
