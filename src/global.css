@@ -51,3 +51,8 @@ html {
 .p-panel .p-panel-header {
     @apply bg-gradient-to-t from-casan-green-600 to-casan-green-400 border-casan-green-400 rounded-t text-white font-bold text-sm
 }
+
+.leaflet-container {  
+  height: 450px;
+  @apply border-1 border-casan-green-400 m-2 h-[460px] rounded-md
+}
