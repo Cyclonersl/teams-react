@@ -7,21 +7,21 @@ import { Menu } from 'primereact/menu';
 
 import { Equipe } from "../../components/Equipe";
 import { PrestadoraModel } from "../../model/Prestadora";
-import { EquipeModel } from "../../model/Equipe";
 
-import PrestadoraData from '../../data/service-provider.json';
-import { teamsData } from '../../data/teams-data'
 import { FaCog, FaFilter } from "react-icons/fa";
+import { useAppSelector, useAppDispatch } from "../../app/hooks";
+import { carregarEquipes } from "../../app/slices/equipes";
+import prestadora, { carregarPrestadoras } from "../../app/slices/prestadora";
 
 interface ListaEquipeProps {
 }
 
 function ListaEquipe({ }: ListaEquipeProps) {
 
+    const dispatch = useAppDispatch();
     const [selectedPrestadora, setSelectedPrestadora] = useState<PrestadoraModel>();
-    const [prestadoras, setPrestadoras] = useState<PrestadoraModel[]>([]);
-    const [equipes, setEquipes] = useState<EquipeModel[]>([]);
-    const [dataLoading, setDataLoading] = useState<boolean>(false);
+    const prestadoras = useAppSelector(state => state.prestadoras)
+    const equipes = useAppSelector(state => state.equipes)
     const refMenuListaEquipe = useRef<Menu>(null);
 
     const menuItens = [
@@ -70,32 +70,35 @@ function ListaEquipe({ }: ListaEquipeProps) {
     ]
 
     const loadPrestadoraData = async () => {
-        setPrestadoras(PrestadoraData);
-        setSelectedPrestadora(PrestadoraData[0])
+        await dispatch(carregarPrestadoras());
     }
+
+    useEffect(() => {
+        if (!selectedPrestadora)
+            setSelectedPrestadora(prestadoras.dados[prestadoras.chaves[0]]);
+    }, [prestadoras])
 
     useEffect(() => {
         loadPrestadoraData();
     }, [])
 
     useEffect(() => {
+
         if (!selectedPrestadora)
             return;
 
-        setDataLoading(true);
-        setEquipes(teamsData);
+        dispatch(carregarEquipes(selectedPrestadora.id))
 
-        setDataLoading(false);
     }, [selectedPrestadora])
 
-    if (dataLoading)
+    if (equipes.carregando)
         <h1>Loading...</h1>
 
     const headerTemplate = (options: PanelHeaderTemplateOptions) => {
         return (<div className="flex justify-between bg-gradient-to-t from-casan-green-600 to-casan-green-400 border-casan-green-400 rounded-t p-1 h-9">
             <Dropdown optionLabel="name"
                 value={selectedPrestadora}
-                options={prestadoras}
+                options={prestadoras.chaves.map(chave => prestadoras.dados[chave])}
                 onChange={(e) => setSelectedPrestadora(e.value)}
 
             />
@@ -117,7 +120,9 @@ function ListaEquipe({ }: ListaEquipeProps) {
     return <>
         <Panel headerTemplate={headerTemplate} className="m-2">
             <div className="flex flex-wrap gap-2">
-                {equipes.map((equipe, index) => <Equipe equipe={equipe} key={equipe.id + "_ " + index} />)}
+                {
+                    equipes.chaves.map((chave, index) => <Equipe equipe={equipes.dados[chave]} key={chave + "_ " + index} />)
+                }
             </div>
         </Panel>
 

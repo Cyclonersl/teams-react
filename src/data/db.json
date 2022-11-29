@@ -1,0 +1,117 @@
+{
+    "prestadoras": [
+        {
+            "id": 1,
+            "name": "Prestadora 1"
+        },
+        {
+            "id": 2,
+            "name": "Prestadora 2"
+        },
+        {
+            "id": 3,
+            "name": "Prestadora 3"
+        }
+    ],
+    "equipes": [
+        {
+            "id": 1,
+            "name": "EquipeModel 1",
+            "color": "#c2e1f6",
+            "status": "online",
+            "prestadoraId": 1,
+            "services": [
+                {
+                    "dtHoraSoltcao": "20/11/2022 13:04",
+                    "nrMatriculaColaborador": 9891,
+                    "tpColaborador": "S",
+                    "situacao": "EM_ROTA",
+                    "codigoServico": 3202,
+                    "descricaoServico": "LA DESLOC. CAV. DN QUALQUER I.C.",
+                    "agencia": "RIO DO SUL",
+                    "distritoOperacional": "RIO DO SUL",
+                    "endereco": "RUA GEORG LUCAS - 83"
+                },
+                {
+                    "dtHoraSoltcao": "13/10/2022 11:04",
+                    "nrMatriculaColaborador": 9891,
+                    "tpColaborador": "S",
+                    "situacao": "PROGRAMADA",
+                    "codigoServico": 1038,
+                    "descricaoServico": "AC VER. LEITURA",
+                    "agencia": "FLORIANÓPOLIS COSTA NORTE",
+                    "distritoOperacional": "CANASVIEIRAS",
+                    "endereco": "RUA ARARAS - 193"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "name": "EquipeModel 2",
+            "color": "#5d6c76",
+            "status": "offline",
+            "prestadoraId": 1,
+            "services": [
+                {
+                    "dtHoraSoltcao": "23/11/2022 08:01",
+                    "nrMatriculaColaborador": 9891,
+                    "tpColaborador": "S",
+                    "situacao": "EXECUTANDO",
+                    "codigoServico": 7322,
+                    "descricaoServico": "ET - MANUTENÇÃO EM SISTEMA DE TELEMETRIA E SUPERV.",
+                    "agencia": "BIGUAÇU",
+                    "distritoOperacional": "BIGUAÇU",
+                    "endereco": "AV. TORRES"
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "name": "EquipeModel 3",
+            "color": "#735d76",
+            "status": "deslogado",
+            "prestadoraId": 1,
+            "services": [
+                {
+                   "dtHoraSoltcao": "23/11/2022 08:01",
+                   "nrMatriculaColaborador": 9891,
+                   "tpColaborador": "S",
+                   "situacao": "EXECUTANDO",
+                   "codigoServico": 7322,
+                   "descricaoServico": "ET - MANUTENÇÃO EM SISTEMA DE TELEMETRIA E SUPERV.",
+                   "agencia": "BIGUAÇU",
+                   "distritoOperacional": "BIGUAÇU",
+                   "endereco": "AV. TORRES"
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "name": "EquipeModel 4",
+            "color": "#735176",
+            "status": "deslogado",
+            "prestadoraId": 1,
+            "services": []
+        },
+        {
+            "id": 5,
+            "name": "EquipeModel 5",
+            "color": "#732d76",
+            "status": "deslogado",
+            "prestadoraId": 2,
+            "services": [
+                {
+                    "dtHoraSoltcao": "23/11/2022 08:01",
+                    "nrMatriculaColaborador": 9891,
+                    "tpColaborador": "S",
+                    "situacao": "EXECUTANDO",
+                    "codigoServico": 7322,
+                    "descricaoServico": "ET - MANUTENÇÃO EM SISTEMA DE TELEMETRIA E SUPERV.",
+                    "agencia": "BIGUAÇU",
+                    "distritoOperacional": "BIGUAÇU",
+                    "endereco": "AV. TORRES"
+                }
+            ]
+        }
+    ]
+}
