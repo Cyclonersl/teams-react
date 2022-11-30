@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import { Dropdown } from 'primereact/dropdown';
 import { Button } from 'primereact/button';
@@ -9,25 +9,18 @@ import { Equipe } from "../../components/Equipe";
 import { PrestadoraModel } from "../../model/Prestadora";
 
 import { FaCog, FaFilter } from "react-icons/fa";
-import { useAppSelector, useAppDispatch } from "../../app/hooks";
+import { useAppSelector } from "../../app/hooks";
 
-import prestadora, { carregarPrestadoras } from "../../app/slices/prestadora";
-import { carregarEquipes } from "../../app/slices/equipes";
+import { PrestadoraSelector } from "./PrestadoraSelector";
 
 interface ListaEquipeProps {
 }
 
 function ListaEquipe({ }: ListaEquipeProps) {
 
-    const dispatch = useAppDispatch();
-    const [selectedPrestadora, setSelectedPrestadora] = useState<PrestadoraModel>();
-    const prestadorasIds = useAppSelector(state => state.prestadoras.ids)
-    const prestadoras = useAppSelector(state => state.prestadoras.lista)
-
     const preferencias = useAppSelector(state => state.equipes.preferencia)
     const equipesIds = useAppSelector(state => state.equipes.ids)
-    const equipes = useAppSelector(state => state.equipes.lista)
-
+    const equipes = useAppSelector(state => state.equipes.entities)
 
     const refMenuListaEquipe = useRef<Menu>(null);
 
@@ -76,30 +69,6 @@ function ListaEquipe({ }: ListaEquipeProps) {
         }
     ]
 
-    const loadPrestadoraData = async () => {
-        await dispatch(carregarPrestadoras());
-    }
-
-    useEffect(() => {
-        if (!selectedPrestadora)
-            setSelectedPrestadora(prestadoras[prestadorasIds[0]]);
-    }, [prestadoras])
-
-    useEffect(() => {
-        loadPrestadoraData();
-    }, [])
-
-    useEffect(() => {
-
-        if (!selectedPrestadora)
-            return;
-
-        dispatch(carregarEquipes(selectedPrestadora.id));
-    }, [selectedPrestadora])
-
-    if (equipes.carregandoEquipes)
-        <h1>Loading...</h1>
-
     const filtrarEquipes = () => {
         const preferenciaSelecionada = preferencias?.selecionada;
 
@@ -114,16 +83,12 @@ function ListaEquipe({ }: ListaEquipeProps) {
         return equipesIds.filter(id => preferenciaData.equipes.includes(id));
     }
 
-    const equipesIdsFiltradas = filtrarEquipes();
+    const equipesIdsFiltradas = useMemo(() => filtrarEquipes(), [preferencias]);
 
     const headerTemplate = (options: PanelHeaderTemplateOptions) => {
-        return (<div className="flex justify-between bg-gradient-to-t from-casan-green-600 to-casan-green-400 border-casan-green-400 rounded-t p-1 h-9">
-            <Dropdown optionLabel="name"
-                value={selectedPrestadora}
-                options={prestadorasIds.map(chave => prestadoras[chave])}
-                onChange={(e) => setSelectedPrestadora(e.value)}
-
-            />
+        return (
+            <div className="flex justify-between bg-gradient-to-t from-casan-green-600 to-casan-green-400 border-casan-green-400 rounded-t p-1 h-9">
+            <PrestadoraSelector />
             <a href="">
                 <div className="bg-casan-gray-400 flex justify-between border-1 border-white pr-1 items-center h-7">
                     <span className="bg-casan-green-200 py-2 px-3 mr-2 text-ssm text-white">

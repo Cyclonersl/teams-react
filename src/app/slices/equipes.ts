@@ -1,13 +1,13 @@
 import { PreferenciasModel } from './../../model/Preferencia';
 import { EquipeModel } from './../../model/Equipe';
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk, createEntityAdapter } from '@reduxjs/toolkit'
 import EquipeDataService from '../services/EquipeDataService';
 import { ServicoProgramadoModel } from '../../model/ServicoProgramado';
 import PreferenciaDataService from '../services/PreferenciaDataService';
 
 interface statePros {
     ids: number[],
-    lista: { [key: string]: EquipeModel },
+    entities: { [key: string]: EquipeModel },
     carregandoEquipes: boolean,
     preferencia?: PreferenciasModel,
     carregandoPreferencias: boolean,
@@ -17,7 +17,7 @@ interface statePros {
 
 const initialState: statePros = {
     ids: [],
-    lista: {},
+    entities: {},
     carregandoEquipes: true,
     carregandoPreferencias: true,
     carregandoServicos: true
@@ -44,6 +44,10 @@ export const carregarServicos = createAsyncThunk("equipes/servicos", async (equi
     return (response.data) as ServicoProgramadoModel[];
 })
 
+const equipeAdapter = createEntityAdapter<EquipeModel>({
+    selectId: (equipe) => equipe.id,
+})
+
 const equipesSlice = createSlice({
     name: 'equipes',
     initialState,
@@ -52,6 +56,7 @@ const equipesSlice = createSlice({
         builder.addCase(carregarEquipes.pending, (state, action) => {
             state.carregandoEquipes = true;
             state.carregandoPreferencias = true;
+            state.carregandoServicos = true;
         })
 
         builder.addCase(carregarEquipes.fulfilled, (state, { payload }) => {
@@ -67,16 +72,10 @@ const equipesSlice = createSlice({
 
             state.carregandoEquipes = false;
             state.ids = ids;
-            state.lista = lista;
+            state.entities = lista;
 
             state.carregandoPreferencias = false;
             state.preferencia = payload.preferencias;
-
-            state.carregandoServicos = false;
-        })
-
-        builder.addCase(carregarServicos.pending, (state, action) => {
-            state.carregandoServicos = true;
         })
 
         builder.addCase(carregarServicos.fulfilled, (state, { payload }) => {
@@ -89,7 +88,7 @@ const equipesSlice = createSlice({
             }, {});
 
             Object.keys(lista).forEach(key => {
-                state.lista[key].services = lista[key];
+                state.entities[key].services = lista[key];
             });
 
             state.carregandoServicos = false;
