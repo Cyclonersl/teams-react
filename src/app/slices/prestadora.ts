@@ -3,13 +3,13 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import PrestadoraDataService from '../services/PrestadoraDataService';
 
 interface statePros {
-    chaves: number[],
-    dados: { [key: string]: PrestadoraModel },
-    carregando?: boolean,
+    ids: number[],
+    lista: { [key: string]: PrestadoraModel },
+    carregando: boolean,
     error?: string
 }
 
-const initialState: statePros = { chaves: [], dados: {} };
+const initialState: statePros = { ids: [], lista: {}, carregando: true };
 
 
 export const carregarPrestadoras = createAsyncThunk("prestadoras/carregar", async () => {
@@ -32,14 +32,14 @@ const prestadoraSlice = createSlice({
                 return map;
             }, {})
 
-            const chaves = payload.reduce((arr: number[], prestadora) => {
+            const ids = payload.reduce((arr: number[], prestadora) => {
                 arr.push(prestadora.id)
                 return arr;
             }, [])
 
             state.carregando = false;
-            state.chaves = chaves;
-            state.dados = map;
+            state.ids = ids;
+            state.lista = map;
         })
     },
     reducers: {

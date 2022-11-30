@@ -10,8 +10,9 @@ import { PrestadoraModel } from "../../model/Prestadora";
 
 import { FaCog, FaFilter } from "react-icons/fa";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
-import { carregarEquipes } from "../../app/slices/equipes";
+
 import prestadora, { carregarPrestadoras } from "../../app/slices/prestadora";
+import { carregarEquipes } from "../../app/slices/equipes";
 
 interface ListaEquipeProps {
 }
@@ -20,8 +21,14 @@ function ListaEquipe({ }: ListaEquipeProps) {
 
     const dispatch = useAppDispatch();
     const [selectedPrestadora, setSelectedPrestadora] = useState<PrestadoraModel>();
-    const prestadoras = useAppSelector(state => state.prestadoras)
-    const equipes = useAppSelector(state => state.equipes)
+    const prestadorasIds = useAppSelector(state => state.prestadoras.ids)
+    const prestadoras = useAppSelector(state => state.prestadoras.lista)
+
+    const preferencias = useAppSelector(state => state.equipes.preferencia)
+    const equipesIds = useAppSelector(state => state.equipes.ids)
+    const equipes = useAppSelector(state => state.equipes.lista)
+
+
     const refMenuListaEquipe = useRef<Menu>(null);
 
     const menuItens = [
@@ -75,7 +82,7 @@ function ListaEquipe({ }: ListaEquipeProps) {
 
     useEffect(() => {
         if (!selectedPrestadora)
-            setSelectedPrestadora(prestadoras.dados[prestadoras.chaves[0]]);
+            setSelectedPrestadora(prestadoras[prestadorasIds[0]]);
     }, [prestadoras])
 
     useEffect(() => {
@@ -87,18 +94,33 @@ function ListaEquipe({ }: ListaEquipeProps) {
         if (!selectedPrestadora)
             return;
 
-        dispatch(carregarEquipes(selectedPrestadora.id))
-
+        dispatch(carregarEquipes(selectedPrestadora.id));
     }, [selectedPrestadora])
 
-    if (equipes.carregando)
+    if (equipes.carregandoEquipes)
         <h1>Loading...</h1>
+
+    const filtrarEquipes = () => {
+        const preferenciaSelecionada = preferencias?.selecionada;
+
+        if (!preferenciaSelecionada)
+            return equipesIds;
+
+        const preferenciaData = preferencias.preferencias.find(preferencia => preferencia.nome === preferenciaSelecionada);
+
+        if (!preferenciaData)
+            return equipesIds;
+
+        return equipesIds.filter(id => preferenciaData.equipes.includes(id));
+    }
+
+    const equipesIdsFiltradas = filtrarEquipes();
 
     const headerTemplate = (options: PanelHeaderTemplateOptions) => {
         return (<div className="flex justify-between bg-gradient-to-t from-casan-green-600 to-casan-green-400 border-casan-green-400 rounded-t p-1 h-9">
             <Dropdown optionLabel="name"
                 value={selectedPrestadora}
-                options={prestadoras.chaves.map(chave => prestadoras.dados[chave])}
+                options={prestadorasIds.map(chave => prestadoras[chave])}
                 onChange={(e) => setSelectedPrestadora(e.value)}
 
             />
@@ -107,7 +129,13 @@ function ListaEquipe({ }: ListaEquipeProps) {
                     <span className="bg-casan-green-200 py-2 px-3 mr-2 text-ssm text-white">
                         <FaFilter />
                     </span>
-                    <span className="text-12 font-bold">3 / 102 selecionadas</span>
+                    {
+                        equipesIdsFiltradas.length === equipesIds.length ?
+                            <span className="text-12 font-bold">Filtrar Equipes</span>
+                            :
+                            <span className="text-12 font-bold">{equipesIdsFiltradas.length} / {equipesIds.length} selecionadas</span>
+                    }
+
                 </div>
             </a>
 
@@ -121,7 +149,9 @@ function ListaEquipe({ }: ListaEquipeProps) {
         <Panel headerTemplate={headerTemplate} className="m-2">
             <div className="flex flex-wrap gap-2">
                 {
-                    equipes.chaves.map((chave, index) => <Equipe equipe={equipes.dados[chave]} key={chave + "_ " + index} />)
+                    equipesIds.map((chave, index) =>
+                        <Equipe equipe={equipes[chave]} key={chave + "_ " + index} />
+                    )
                 }
             </div>
         </Panel>

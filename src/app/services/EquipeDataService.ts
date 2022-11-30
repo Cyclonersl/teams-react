@@ -1,7 +1,7 @@
 import http from '../api'
 
 class EquipeDataSerice {
-    carregarEquipesPrestadora(prestadoraId: Number) {
+    carregarEquipesPrestadora(prestadoraId: number) {
         return http.get(`/equipes?prestadoraId=${prestadoraId}`)
     }
 
