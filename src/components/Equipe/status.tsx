@@ -1,10 +1,14 @@
+import { useAppSelector } from "../../app/hooks";
+
 interface StatusProps {
-    type: string
+    id: number
 }
 
-function Status({ type }: StatusProps) {
+function Status({ id }: StatusProps) {
 
-    if (type == 'deslogado')
+    const type = useAppSelector(state => state.equipes.entities[id]?.status)
+
+    if (!type || type === 'deslogado')
         return null;
 
     const color = type == 'online' ? 'bg-casan-online-400' : 'bg-casan-offline-400'

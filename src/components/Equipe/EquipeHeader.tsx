@@ -13,8 +13,8 @@ interface EquipeHeaderProps {
 export function EquipeHeader({ id }: EquipeHeaderProps) {
 
     const refMenuTeam = useRef<Menu>(null);
-    const name = useAppSelector(state => state.equipes.entities[id].name)
-    const status = useAppSelector(state => state.equipes.entities[id].status)
+    const name = useAppSelector(state => state.equipes.entities[id]?.name)
+
 
     const menuItens = [
         {
@@ -88,7 +88,7 @@ export function EquipeHeader({ id }: EquipeHeaderProps) {
                 <div className='flex items-center'>
                     <ServiceRoundedCounter id={id} />
                     <span className="text-casan-green-800 font-bold ">{name}</span>
-                    <Status type={status} />
+                    <Status id={id} />
                 </div>
                 <div className='flex gap-1 text-casan-green-800'>
                     <Button disabled
