@@ -8,5 +8,6 @@ export interface ServicoModel {
     distritoOperacional: string;
     endereco: string;
     equipeId: number;
+    ordem: number;
 }
 

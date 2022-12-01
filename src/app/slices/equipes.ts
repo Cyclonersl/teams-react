@@ -109,5 +109,18 @@ export const selectEquipesIdsPreferencia = (state: RootState) => {
 }
 
 export const selectServicosEquipe = (state: RootState, equipeId: Number) => {
-    return equipeAdapter.getSelectors().selectById(state.equipes, equipeId as EntityId)?.services
+    const servicos = equipeAdapter.getSelectors().selectById(state.equipes, equipeId as EntityId)?.services;
+
+    if (!servicos)
+        return [];
+
+    return [...servicos].sort((a, b) => {
+        if (a.situacao === "PROGRAMADA" && b.situacao === "PROGRAMADA")
+            return a.ordem - b.ordem;
+
+        if (a.situacao !== "PROGRAMADA")
+            return -1;
+
+        return 1;
+    })
 }
