@@ -29,7 +29,7 @@ function ServicoProgramado({ servico }: ServicoProgramadoProps) {
                         <FaCodeBranch />
                     </div>
                 </div>
-                <FaTimes />
+                {servico.situacao === "PROGRAMADA" ? <FaTimes /> : null}
             </div>
             <div className="text-sm">
                 <div className="flex items-center gap-1/2">
