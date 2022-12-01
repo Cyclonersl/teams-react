@@ -20,7 +20,6 @@ function ListaEquipe({ }: ListaEquipeProps) {
 
     const preferencias = useAppSelector(state => state.equipes.preferencia)
     const equipesIds = useAppSelector(state => state.equipes.ids)
-    const equipes = useAppSelector(state => state.equipes.entities)
 
     const refMenuListaEquipe = useRef<Menu>(null);
 
@@ -88,34 +87,34 @@ function ListaEquipe({ }: ListaEquipeProps) {
     const headerTemplate = (options: PanelHeaderTemplateOptions) => {
         return (
             <div className="flex justify-between bg-gradient-to-t from-casan-green-600 to-casan-green-400 border-casan-green-400 rounded-t p-1 h-9">
-            <PrestadoraSelector />
-            <a href="">
-                <div className="bg-casan-gray-400 flex justify-between border-1 border-white pr-1 items-center h-7">
-                    <span className="bg-casan-green-200 py-2 px-3 mr-2 text-ssm text-white">
-                        <FaFilter />
-                    </span>
-                    {
-                        equipesIdsFiltradas.length === equipesIds.length ?
-                            <span className="text-12 font-bold">Filtrar Equipes</span>
-                            :
-                            <span className="text-12 font-bold">{equipesIdsFiltradas.length} / {equipesIds.length} selecionadas</span>
-                    }
+                <PrestadoraSelector />
+                <a href="">
+                    <div className="bg-casan-gray-400 flex justify-between border-1 border-white pr-1 items-center h-7">
+                        <span className="bg-casan-green-200 py-2 px-3 mr-2 text-ssm text-white">
+                            <FaFilter />
+                        </span>
+                        {
+                            equipesIdsFiltradas.length === equipesIds.length ?
+                                <span className="text-12 font-bold">Filtrar Equipes</span>
+                                :
+                                <span className="text-12 font-bold">{equipesIdsFiltradas.length} / {equipesIds.length} selecionadas</span>
+                        }
 
-                </div>
-            </a>
+                    </div>
+                </a>
 
-            <Button icon={<FaCog />}
-                onClick={(e) => refMenuListaEquipe.current?.toggle(e)} />
+                <Button icon={<FaCog />}
+                    onClick={(e) => refMenuListaEquipe.current?.toggle(e)} />
 
-        </div>)
+            </div>)
     }
 
     return <>
         <Panel headerTemplate={headerTemplate} className="m-2">
             <div className="flex flex-wrap gap-2">
                 {
-                    equipesIds.map((chave, index) =>
-                        <Equipe equipe={equipes[chave]} key={chave + "_ " + index} />
+                    equipesIdsFiltradas.map((id, index) =>
+                        <Equipe id={id} key={`EQUIPE_${id}`} />
                     )
                 }
             </div>

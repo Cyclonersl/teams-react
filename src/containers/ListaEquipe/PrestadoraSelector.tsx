@@ -30,10 +30,9 @@ export function PrestadoraSelector() {
 
     return (
         <Dropdown optionLabel="name"
-                value={selectedPrestadora}
-                options={prestadorasIds.map(chave => prestadoras[chave])}
-                onChange={(e) => setSelectedPrestadora(e.value)}
-
-            />
+            value={selectedPrestadora}
+            options={prestadorasIds.map(chave => prestadoras[chave])}
+            onChange={(e) => setSelectedPrestadora(e.value)}
+        />
     )
 }

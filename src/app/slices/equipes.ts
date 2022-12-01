@@ -60,20 +60,9 @@ const equipesSlice = createSlice({
         })
 
         builder.addCase(carregarEquipes.fulfilled, (state, { payload }) => {
-            const lista = payload.equipes.reduce((lista: { [key: string]: EquipeModel }, equipe) => {
-                lista[equipe.id] = equipe;
-                return lista;
-            }, {})
-
-            const ids = payload.equipes.reduce((arr: number[], equipe) => {
-                arr.push(equipe.id)
-                return arr;
-            }, [])
+            equipeAdapter.addMany(state, payload.equipes);
 
             state.carregandoEquipes = false;
-            state.ids = ids;
-            state.entities = lista;
-
             state.carregandoPreferencias = false;
             state.preferencia = payload.preferencias;
         })
