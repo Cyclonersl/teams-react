@@ -9,5 +9,9 @@ export interface ServicoModel {
     endereco: string;
     equipeId: number;
     ordem: number;
+    coordenadas: {
+        lat: number,
+        lng: number
+    }
 }
 

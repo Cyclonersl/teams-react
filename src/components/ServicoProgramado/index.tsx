@@ -9,7 +9,7 @@ interface ServicoProgramadoProps {
 
 function ServicoProgramado({ servico }: ServicoProgramadoProps) {
 
-    const situacaoColor = servico.situacao === "PROGRAMADA" ? "bg-casan-programado-400" :
+    let situacaoColor = servico.situacao === "PROGRAMADA" ? "bg-casan-programado-400" :
         servico.situacao === "EM_ROTA" ? "bg-casan-emrota-400" :
             servico.situacao === "EXECUTANDO" ? "bg-casan-executando-400" :
                 "bg-casan-gray-400";

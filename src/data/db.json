@@ -99,7 +99,11 @@
             "distritoOperacional": "BIGUAÇU",
             "endereco": "AV. TORRES",
             "equipeId": 5,
-            "ordem": 1
+            "ordem": 1,            
+            "coordenadas": {
+                "lat":-27.80, 
+                "lng": -48.5495
+            }
         },
         {
             "dtHoraSoltcao": "23/11/2022 08:01",
@@ -112,7 +116,11 @@
             "distritoOperacional": "BIGUAÇU",
             "endereco": "AV. TORRES",
             "equipeId": 3,
-            "ordem": 1
+            "ordem": 1,            
+            "coordenadas": {
+                "lat":-27.5969, 
+                "lng": -48.60
+            }
          },
          {
             "dtHoraSoltcao": "23/11/2022 07:01",
@@ -125,7 +133,11 @@
             "distritoOperacional": "BIGUAÇU",
             "endereco": "AV. TORRES",
             "equipeId": 2,
-            "ordem": 1
+            "ordem": 1,            
+            "coordenadas": {
+                "lat":-27.65, 
+                "lng": -48.5495
+            }
         },
         {
             "dtHoraSoltcao": "13/10/2022 11:04",
@@ -138,7 +150,11 @@
             "distritoOperacional": "CANASVIEIRAS",
             "endereco": "RUA ARARAS - 193",
             "equipeId": 1,
-            "ordem": 1
+            "ordem": 1,            
+            "coordenadas": {
+                "lat":-27.5969, 
+                "lng": -27.5969
+            }
         },
         {
             "dtHoraSoltcao": "20/11/2022 13:04",
@@ -150,7 +166,11 @@
             "agencia": "RIO DO SUL",
             "distritoOperacional": "RIO DO SUL",
             "endereco": "RUA GEORG LUCAS - 83",
-            "equipeId": 1
+            "equipeId": 1,
+            "coordenadas": {
+                "lat":-27.5969, 
+                "lng": -48.8
+            }
         }
     ]
 }
