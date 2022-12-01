@@ -1,26 +1,25 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useRef } from "react";
 
-import { Dropdown } from 'primereact/dropdown';
 import { Button } from 'primereact/button';
 import { Panel, PanelHeaderTemplateOptions } from 'primereact/panel'
 import { Menu } from 'primereact/menu';
 
 import { Equipe } from "../../components/Equipe";
-import { PrestadoraModel } from "../../model/Prestadora";
 
-import { FaCog, FaFilter } from "react-icons/fa";
+import { FaCog } from "react-icons/fa";
 import { useAppSelector } from "../../app/hooks";
 
 import { PrestadoraSelector } from "./PrestadoraSelector";
+import { ButtonFiltrarEquipes } from "./ButtonFiltrarEquipes";
+
+import { selectEquipesIdsPreferencia } from "../../app/slices/equipes";
 
 interface ListaEquipeProps {
 }
 
 function ListaEquipe({ }: ListaEquipeProps) {
 
-    const preferencias = useAppSelector(state => state.equipes.preferencia)
-    const equipesIds = useAppSelector(state => state.equipes.ids)
-
+    const equipesIds = useAppSelector(selectEquipesIdsPreferencia)
     const refMenuListaEquipe = useRef<Menu>(null);
 
     const menuItens = [
@@ -68,55 +67,19 @@ function ListaEquipe({ }: ListaEquipeProps) {
         }
     ]
 
-    const filtrarEquipes = () => {
-        const preferenciaSelecionada = preferencias?.selecionada;
-
-        if (!preferenciaSelecionada)
-            return equipesIds;
-
-        const preferenciaData = preferencias.preferencias.find(preferencia => preferencia.nome === preferenciaSelecionada);
-
-        if (!preferenciaData)
-            return equipesIds;
-
-        return equipesIds.filter(id => preferenciaData.equipes.includes(id));
-    }
-
-    const equipesIdsFiltradas = useMemo(() => filtrarEquipes(), [preferencias]);
-
     const headerTemplate = (options: PanelHeaderTemplateOptions) => {
         return (
             <div className="flex justify-between bg-gradient-to-t from-casan-green-600 to-casan-green-400 border-casan-green-400 rounded-t p-1 h-9">
                 <PrestadoraSelector />
-                <a href="">
-                    <div className="bg-casan-gray-400 flex justify-between border-1 border-white pr-1 items-center h-7">
-                        <span className="bg-casan-green-200 py-2 px-3 mr-2 text-ssm text-white">
-                            <FaFilter />
-                        </span>
-                        {
-                            equipesIdsFiltradas.length === equipesIds.length ?
-                                <span className="text-12 font-bold">Filtrar Equipes</span>
-                                :
-                                <span className="text-12 font-bold">{equipesIdsFiltradas.length} / {equipesIds.length} selecionadas</span>
-                        }
-
-                    </div>
-                </a>
-
-                <Button icon={<FaCog />}
-                    onClick={(e) => refMenuListaEquipe.current?.toggle(e)} />
-
+                <ButtonFiltrarEquipes />
+                <Button icon={<FaCog />} onClick={(e) => refMenuListaEquipe.current?.toggle(e)} />
             </div>)
     }
 
     return <>
         <Panel headerTemplate={headerTemplate} className="m-2">
             <div className="flex flex-wrap gap-2">
-                {
-                    equipesIdsFiltradas.map((id, index) =>
-                        <Equipe id={id} key={`EQUIPE_${id}`} />
-                    )
-                }
+                {equipesIds.map((id, index) => <Equipe id={id as number} key={`EQUIPE_${id}`} />)}
             </div>
         </Panel>
 

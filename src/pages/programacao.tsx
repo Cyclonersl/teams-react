@@ -3,15 +3,6 @@ import { Mapa } from "../containers/Mapa";
 import { BlockLoading } from "../containers/BlockLoading";
 import { SideProgramacao } from "../containers/SideProgramacao";
 
-const items = [
-    {
-        label: 'Programar',
-        icon: 'pi pi-pencil',
-        command: () => {
-        }
-    }
-];
-
 function ProgramacaoScreen() {
 
     return (

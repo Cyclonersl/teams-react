@@ -2,15 +2,14 @@ import { Dropdown } from "primereact/dropdown";
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { carregarEquipes } from "../../app/slices/equipes";
-import { carregarPrestadoras } from "../../app/slices/prestadora";
+import { carregarPrestadoras, prestadoraAdapter } from "../../app/slices/prestadora";
 import { PrestadoraModel } from "../../model/Prestadora";
 
 export function PrestadoraSelector() {
     const dispatch = useAppDispatch();
 
     const [selectedPrestadora, setSelectedPrestadora] = useState<PrestadoraModel>();
-    const prestadorasIds = useAppSelector(state => state.prestadoras.ids)
-    const prestadoras = useAppSelector(state => state.prestadoras.lista)
+    const prestadoras = useAppSelector(state => prestadoraAdapter.getSelectors().selectAll(state.prestadoras))
 
     useEffect(() => {
         dispatch(carregarPrestadoras());
@@ -18,7 +17,7 @@ export function PrestadoraSelector() {
 
     useEffect(() => {
         if (!selectedPrestadora)
-            setSelectedPrestadora(prestadoras[prestadorasIds[0]]);
+            setSelectedPrestadora(prestadoras[0]);
     }, [prestadoras])
 
     useEffect(() => {
@@ -31,7 +30,7 @@ export function PrestadoraSelector() {
     return (
         <Dropdown optionLabel="name"
             value={selectedPrestadora}
-            options={prestadorasIds.map(chave => prestadoras[chave])}
+            options={prestadoras}
             onChange={(e) => setSelectedPrestadora(e.value)}
         />
     )

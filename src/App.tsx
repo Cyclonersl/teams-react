@@ -6,7 +6,6 @@ import { ProgramacaoScreen } from "./pages/programacao";
 
 function App() {
 
-
   return <>
     <ProgramacaoScreen />
   </>
