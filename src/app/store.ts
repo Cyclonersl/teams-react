@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import equipeReducer from './slices/equipes'
 import prestadoraReducer from './slices/prestadora'
+import localizacoesReducer from './slices/localizacoes'
 
 const store = configureStore({
     reducer: {
         equipes: equipeReducer,
-        prestadoras: prestadoraReducer
+        prestadoras: prestadoraReducer,
+        localizacoes: localizacoesReducer
     },
 });
 

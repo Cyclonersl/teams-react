@@ -135,8 +135,8 @@
             "equipeId": 2,
             "ordem": 1,            
             "coordenadas": {
-                "lat":-27.65, 
-                "lng": -48.5495
+                "lat":-27.6, 
+                "lng": -48.545
             }
         },
         {
@@ -152,8 +152,8 @@
             "equipeId": 1,
             "ordem": 1,            
             "coordenadas": {
-                "lat":-27.5969, 
-                "lng": -27.5969
+                "lat":-27.64, 
+                "lng": -48.525
             }
         },
         {
@@ -169,7 +169,7 @@
             "equipeId": 1,
             "coordenadas": {
                 "lat":-27.5969, 
-                "lng": -48.8
+                "lng": -48.52
             }
         }
     ]

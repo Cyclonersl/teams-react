@@ -1,7 +1,7 @@
 import { RootState } from './../store';
 import { PreferenciasModel } from './../../model/Preferencia';
-import { EquipeModel } from './../../model/Equipe';
-import { createSlice, createAsyncThunk, createEntityAdapter, EntityState, EntityId } from '@reduxjs/toolkit'
+import { EquipeModel, LocalizacaoEquipe } from './../../model/Equipe';
+import { createSlice, createAsyncThunk, createEntityAdapter, EntityState, EntityId, PayloadAction } from '@reduxjs/toolkit'
 import EquipeDataService from '../services/EquipeDataService';
 import { ServicoProgramadoModel } from '../../model/ServicoProgramado';
 import PreferenciaDataService from '../services/PreferenciaDataService';
@@ -89,7 +89,6 @@ const equipesSlice = createSlice({
         })
     },
     reducers: {
-
     }
 })
 

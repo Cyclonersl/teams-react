@@ -1,48 +1,54 @@
-import { useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 
 import { Map } from 'leaflet';
-import { MapContainer, TileLayer, useMap } from 'react-leaflet'
-import { useLeafletContext } from '@react-leaflet/core'
+import { LayerGroup, MapContainer, Marker, Popup, TileLayer, } from 'react-leaflet'
+
 import { useAppSelector } from '../../app/hooks';
-import { selectEquipesIdsPreferencia, selectServicosEquipe } from '../../app/slices/equipes';
-import { EntityId } from '@reduxjs/toolkit';
+import { selectEquipesIdsPreferencia } from '../../app/slices/equipes';
+import { markerServico } from './MarkerServico';
+
 import L from 'leaflet'
+import { Veiculo } from './Veiculo';
 
 interface MarkersProps {
     id: number;
 }
 
 function Markers({ id }: MarkersProps) {
-    const context = useLeafletContext()
-    const equipe = useAppSelector(state => state.equipes.entities[id]);
 
-    useEffect(() => {
+    const servicos = useAppSelector(state => state.equipes.entities[id]?.services);
+    const corFundo = useAppSelector(state => state.equipes.entities[id]?.color);
 
-        if (!equipe?.services)
-            return
-
-        equipe?.services.forEach(servico => {
-            const latLng = L.latLng(servico.coordenadas.lat, servico.coordenadas.lng);
-
-            const bounds = L.latLng(latLng).toBounds(1000)
-            const square = new L.marker(latLng, {
-                icon: new L.NumberedDivIcon(),
-                draggable: false,
-                riseOnHover: true,
-                equipe_id: equipe.id
-            });
-            const container = context.layerContainer || context.map
-            container.addLayer(square)
-
-            return () => {
-                container.removeLayer(square)
-            }
-        })
+    if (!servicos || !corFundo)
+        return null;
 
 
-    }, [equipe])
+    return <LayerGroup>
+        {
+            servicos.map((servico, index) =>
+                <Marker
+                    position={L.latLng(servico.coordenadas.lat, servico.coordenadas.lng)}
+                    icon={markerServico({
+                        corFundo,
+                        numero: index + 1,
+                        corFonte: '#FFFFFF',
+                        situacao: servico.situacao
+                    })}
+                    key={`marker_${id}_${index}`}
+                >
+                    <Popup >
+                        {`${servico.dtHoraSoltcao}`}
+                        <br />
+                        {`Lat: ${servico.coordenadas.lat}`}
+                        <br />
+                        {`Lng: ${servico.coordenadas.lng}`}
+                    </Popup>
+                </Marker>
+            )
+        }
 
-    return null;
+
+    </LayerGroup>;
 }
 
 function Mapa() {
@@ -55,7 +61,10 @@ function Mapa() {
     return (
         <MapContainer center={center} zoom={12} scrollWheelZoom={true} ref={map}>
             <TileLayer url="https://maps.casan.com.br/tile/{z}/{x}/{y}.png?auth_token=12345678" />
-            {equipesIds.map(id => <Markers id={Number(id)} />)}
+            {equipesIds.map(id => <>
+                <Markers id={Number(id)} key={`markers_${id}`} />
+                <Veiculo id={Number(id)} />
+            </>)}
         </MapContainer>
     );
 }
