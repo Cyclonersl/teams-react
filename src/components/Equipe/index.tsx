@@ -19,7 +19,6 @@ function Equipe({ id }: ListaEquipeProps) {
 
     useEffect(() => {
         dispatch(carregarServicos(id));
-        console.log('Carregando Serviços')
     }, [id])
 
     return <>

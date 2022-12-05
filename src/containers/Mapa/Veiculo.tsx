@@ -1,44 +1,52 @@
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { useEffect, useRef, useState } from "react";
 
-import L from 'leaflet'
+import L, { Marker } from 'leaflet'
+
+import { useAppSelector } from "../../app/hooks";
+import { useLeafletContext } from "@react-leaflet/core";
 import { markerCarro } from "./MarkerCarro";
-import { Marker } from "react-leaflet";
-import { useCallback, useEffect, useState } from "react";
-import { localizacaoUpdate } from "../../app/slices/localizacoes";
 
 interface VeiculoProps {
     id: number;
 }
 
 export function Veiculo({ id }: VeiculoProps) {
-
-    /* const dispatch = useAppDispatch();
- 
-     const localizacoes = [
-         { id: 1, lat: -27.64, lng: -48.525 },
-         { id: 1, lat: -27.5969, lng: -48.52 },
-         { id: 1, lat: -27.5969, lng: -48.60 }
-     ]
- 
-     const [index, setIndex] = useState(0);
- 
-     useEffect(() => {
-         dispatch(localizacaoUpdate(localizacoes[index]));
-         setTimeout(() => {
-             const next = index == 2 ? 0 : index + 1;
-             setIndex(next);
-         }, 2000);
-     }, [index])
- */
     const cor = useAppSelector(state => state.equipes.entities[id]?.color);
-    /* const localizacao = useAppSelector(state => state.localizacoes?.entities[id]);
- 
-     if (!cor || !localizacao)
-         return null;
- */
+    const localizacao = useAppSelector(state => state.localizacoes?.entities[id]);
+    const context = useLeafletContext()
+    const carroRef = useRef<Marker>();
+
+    const container = context.layerContainer || context.map;
+
+    const criarCarro = () => {
+        if (localizacao && cor) {
+            const carroLayer = L.marker(L.latLng(localizacao.lat, localizacao.lng), {
+                icon: markerCarro({
+                    cor: cor
+                })
+            })
+
+            carroRef.current = carroLayer;
+            container.addLayer(carroLayer);
+        }
+    }
+
+    useEffect(() => {
+        if (localizacao && cor) {
+            if (!carroRef.current)
+                criarCarro();
+            else {
+                carroRef.current.setLatLng(L.latLng(localizacao.lat, localizacao.lng))
+            }
+        }
+    }, [localizacao])
+
+    useEffect(() => {
+        return () => {
+            if (carroRef.current)
+                container.removeLayer(carroRef.current)
+        }
+    }, [])
+
     return null;
-    /*<Marker
-        position={L.latLng(localizacao.lat, localizacao.lng)}
-        icon={markerCarro({ cor })}>
-    </Marker>*/
 }

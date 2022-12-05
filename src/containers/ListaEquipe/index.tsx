@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 
 import { Button } from 'primereact/button';
 import { Panel, PanelHeaderTemplateOptions } from 'primereact/panel'
@@ -13,6 +13,7 @@ import { PrestadoraSelector } from "./PrestadoraSelector";
 import { ButtonFiltrarEquipes } from "./ButtonFiltrarEquipes";
 
 import { selectEquipesIdsPreferencia } from "../../app/slices/equipes";
+import SocketClient from "../../app/socket";
 
 interface ListaEquipeProps {
 }

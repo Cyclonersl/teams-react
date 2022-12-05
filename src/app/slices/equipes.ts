@@ -71,10 +71,10 @@ const equipesSlice = createSlice({
 
         builder.addCase(carregarEquipes.fulfilled, (state, { payload }) => {
             equipeAdapter.addMany(state, payload.equipes);
+            state.preferencia = payload.preferencias;
 
             state.carregandoEquipes = false;
             state.carregandoPreferencias = false;
-            state.preferencia = payload.preferencias;
         })
 
         builder.addCase(carregarServicos.fulfilled, (state, { payload }) => {
