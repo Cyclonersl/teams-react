@@ -6,9 +6,3 @@ export interface EquipeModel {
     status: string;
     services?: ServicoProgramadoModel[];
 }
-
-export interface LocalizacaoEquipe {
-    id: number,
-    lat: number,
-    lng: number
-}

@@ -20,7 +20,7 @@ export function Veiculo({ id }: VeiculoProps) {
 
     const criarCarro = () => {
         if (localizacao && cor) {
-            const carroLayer = L.marker(L.latLng(localizacao.lat, localizacao.lng), {
+            const carroLayer = L.marker(L.latLng(localizacao.geometry.coordinates[1], localizacao.geometry.coordinates[0]), {
                 icon: markerCarro({
                     cor: cor
                 })
@@ -36,7 +36,7 @@ export function Veiculo({ id }: VeiculoProps) {
             if (!carroRef.current)
                 criarCarro();
             else {
-                carroRef.current.setLatLng(L.latLng(localizacao.lat, localizacao.lng))
+                carroRef.current.setLatLng(L.latLng(localizacao.geometry.coordinates[1], localizacao.geometry.coordinates[0]))
             }
         }
     }, [localizacao])
@@ -48,5 +48,5 @@ export function Veiculo({ id }: VeiculoProps) {
         }
     }, [])
 
-    return null;
+    return (null);
 }

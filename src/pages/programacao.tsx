@@ -17,7 +17,7 @@ function ProgramacaoScreen() {
             <div className="flex">
                 <SideProgramacao />
                 <div className={`flex-1`}>
-                    <Mapa />
+                    <Mapa key="mapa_component" />
                     <ListaEquipe />
                 </div>
             </div >

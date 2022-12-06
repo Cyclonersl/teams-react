@@ -1,17 +1,19 @@
-import { createEntityAdapter, createSlice } from "@reduxjs/toolkit";
-import { LocalizacaoEquipe } from "../../model/Equipe";
+import { LocalizacaoEquipeMessage } from './../../model/LocalizacaoEquipeMessage';
+import { createEntityAdapter, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 
-export const localizacaoAdapter = createEntityAdapter<LocalizacaoEquipe>({
-    selectId: (localizacao) => localizacao.id,
+export const localizacaoAdapter = createEntityAdapter<LocalizacaoEquipeMessage>({
+    selectId: (localizacao) => localizacao.equipe_id,
 })
 
 const localizacaoSlice = createSlice({
     name: 'localizacoes',
     initialState: localizacaoAdapter.getInitialState,
     reducers: {
-        localizacaoUpdate: localizacaoAdapter.upsertOne
-    }
+        localizacaoUpdate: (state, action: PayloadAction<LocalizacaoEquipeMessage>) => {
+            localizacaoAdapter.upsertOne(state, action.payload)
+        }
+    },
 })
 
 export default localizacaoSlice.reducer

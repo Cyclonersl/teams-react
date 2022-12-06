@@ -2,6 +2,8 @@ import { RootState } from '../store';
 import { Middleware } from '@reduxjs/toolkit';
 import { Dispatch } from '@reduxjs/toolkit';
 import SocketClient from '../socket';
+import { useAppSelector } from '../hooks';
+import { selectEquipesIdsPreferencia } from '../slices/equipes';
 
 
 interface SocketMiddlewareParams {
@@ -16,7 +18,8 @@ export const socketMiddleware: Middleware<{}, RootState, Dispatch> = params => (
     switch (type) {
         case 'equipes/carregar/fulfilled':
             next(action)
-            SocketClient.getInstance().join(getState().equipes.ids);
+            const ids = selectEquipesIdsPreferencia(getState())
+            SocketClient.getInstance().join(ids);
 
             break;
     }
