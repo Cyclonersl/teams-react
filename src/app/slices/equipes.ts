@@ -1,7 +1,9 @@
+import { createSlice, createAsyncThunk, createEntityAdapter, EntityState, EntityId, PayloadAction } from '@reduxjs/toolkit'
+import { createSelector } from 'reselect'
+import { SituacaoEquipeMessage } from './../../model/SituacaoEquipeMessage';
 import { RootState } from './../store';
 import { PreferenciasModel } from './../../model/Preferencia';
-import { EquipeModel, LocalizacaoEquipe } from './../../model/Equipe';
-import { createSlice, createAsyncThunk, createEntityAdapter, EntityState, EntityId, PayloadAction } from '@reduxjs/toolkit'
+import { EquipeModel } from './../../model/Equipe';
 import EquipeDataService from '../services/EquipeDataService';
 import { ServicoProgramadoModel } from '../../model/ServicoProgramado';
 import PreferenciaDataService from '../services/PreferenciaDataService';
@@ -89,23 +91,42 @@ const equipesSlice = createSlice({
         })
     },
     reducers: {
+        updateSituacaoEquipe: (state, action: PayloadAction<SituacaoEquipeMessage>) => {
+            equipeAdapter.updateOne(state, {
+                id: action.payload.equipe_id,
+                changes: {
+                    status: action.payload.situacao === 4 ? 'online'
+                        : action.payload.situacao === 5 ?
+                            'offline' : 'deslogado'
+                }
+            })
+        }
     }
 })
 
+
 export default equipesSlice.reducer;
+export const { updateSituacaoEquipe } = equipesSlice.actions
 
 //Selectors
-export const selectEquipesIdsPreferencia = (state: RootState) => {
-    if (!state.equipes.preferencia?.selecionada)
-        return state.equipes.ids;
+const preferenciaSelecionada = (state: RootState) => state.equipes.preferencia?.selecionada === undefined ? null : state.equipes.preferencia.preferencias.find(preferencia => preferencia.nome === state.equipes.preferencia?.selecionada)
+const allIds = (state: RootState) => state.equipes.ids
+export const selectEquipesIdsPreferencia = createSelector([preferenciaSelecionada, allIds],
+    (preferenciaSelecionada, allIds) => {
+        if (!preferenciaSelecionada)
+            return allIds;
 
-    const preferenciaData = state.equipes.preferencia.preferencias.find(preferencia => preferencia.nome === state.equipes.preferencia?.selecionada);
+        return allIds.filter(id => preferenciaSelecionada.equipes.includes(Number(id)));
+    })
 
-    if (!preferenciaData)
-        return state.equipes.ids;
 
-    return state.equipes.ids.filter(id => preferenciaData.equipes.includes(Number(id)));
-}
+export const selectQuantidadesEquipesSelecionadas = createSelector([selectEquipesIdsPreferencia, allIds],
+    (selectEquipesIdsPreferencia, allIds) => {
+        if (selectEquipesIdsPreferencia.length === allIds.length)
+            return null;
+
+        return selectEquipesIdsPreferencia.length + ' / ' + allIds.length;
+    })
 
 export const selectServicosEquipe = (state: RootState, equipeId: Number) => {
     const servicos = equipeAdapter.getSelectors().selectById(state.equipes, equipeId as EntityId)?.services;
@@ -113,13 +134,5 @@ export const selectServicosEquipe = (state: RootState, equipeId: Number) => {
     if (!servicos)
         return [];
 
-    return [...servicos].sort((a, b) => {
-        if (a.situacao === "PROGRAMADA" && b.situacao === "PROGRAMADA")
-            return a.ordem - b.ordem;
-
-        if (a.situacao !== "PROGRAMADA")
-            return -1;
-
-        return 1;
-    })
+    return servicos
 }

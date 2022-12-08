@@ -89,23 +89,6 @@
     ],
     "servicos": [
         {
-            "dtHoraSoltcao": "23/11/2022 06:01",
-            "nrMatriculaColaborador": 9891,
-            "tpColaborador": "S",
-            "situacao": "EXECUTANDO",
-            "codigoServico": 7322,
-            "descricaoServico": "ET - MANUTENÇÃO EM SISTEMA DE TELEMETRIA E SUPERV.",
-            "agencia": "BIGUAÇU",
-            "distritoOperacional": "BIGUAÇU",
-            "endereco": "AV. TORRES",
-            "equipeId": 5,
-            "ordem": 1,            
-            "coordenadas": {
-                "lat":-27.80, 
-                "lng": -48.5495
-            }
-        },
-        {
             "dtHoraSoltcao": "23/11/2022 08:01",
             "nrMatriculaColaborador": 9891,
             "tpColaborador": "S",
@@ -122,7 +105,24 @@
                 "lng": -48.60
             }
          },
-         {
+        {
+            "dtHoraSoltcao": "23/11/2022 06:01",
+            "nrMatriculaColaborador": 9891,
+            "tpColaborador": "S",
+            "situacao": "EXECUTANDO",
+            "codigoServico": 7322,
+            "descricaoServico": "ET - MANUTENÇÃO EM SISTEMA DE TELEMETRIA E SUPERV.",
+            "agencia": "BIGUAÇU",
+            "distritoOperacional": "BIGUAÇU",
+            "endereco": "AV. TORRES",
+            "equipeId": 5,
+            "ordem": 1,            
+            "coordenadas": {
+                "lat":-27.80, 
+                "lng": -48.5495
+            }
+        },      
+        {
             "dtHoraSoltcao": "23/11/2022 07:01",
             "nrMatriculaColaborador": 9891,
             "tpColaborador": "S",
@@ -137,6 +137,22 @@
             "coordenadas": {
                 "lat":-27.6, 
                 "lng": -48.545
+            }
+        },
+        {
+            "dtHoraSoltcao": "20/11/2022 13:04",
+            "nrMatriculaColaborador": 9891,
+            "tpColaborador": "S",
+            "situacao": "EM_ROTA",
+            "codigoServico": 3202,
+            "descricaoServico": "LA DESLOC. CAV. DN QUALQUER I.C.",
+            "agencia": "RIO DO SUL",
+            "distritoOperacional": "RIO DO SUL",
+            "endereco": "RUA GEORG LUCAS - 83",
+            "equipeId": 201,
+            "coordenadas": {
+                "lat":-27.5969, 
+                "lng": -48.52
             }
         },
         {
@@ -155,22 +171,7 @@
                 "lat":-27.64, 
                 "lng": -48.525
             }
-        },
-        {
-            "dtHoraSoltcao": "20/11/2022 13:04",
-            "nrMatriculaColaborador": 9891,
-            "tpColaborador": "S",
-            "situacao": "EM_ROTA",
-            "codigoServico": 3202,
-            "descricaoServico": "LA DESLOC. CAV. DN QUALQUER I.C.",
-            "agencia": "RIO DO SUL",
-            "distritoOperacional": "RIO DO SUL",
-            "endereco": "RUA GEORG LUCAS - 83",
-            "equipeId": 201,
-            "coordenadas": {
-                "lat":-27.5969, 
-                "lng": -48.52
-            }
         }
+        
     ]
 }

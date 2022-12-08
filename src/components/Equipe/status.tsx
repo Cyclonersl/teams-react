@@ -1,4 +1,5 @@
 import { useAppSelector } from "../../app/hooks";
+import { equipeAdapter } from "../../app/slices/equipes";
 
 interface StatusProps {
     id: number
@@ -6,7 +7,7 @@ interface StatusProps {
 
 function Status({ id }: StatusProps) {
 
-    const type = useAppSelector(state => state.equipes.entities[id]?.status)
+    const type = useAppSelector(state => equipeAdapter.getSelectors().selectById(state.equipes, id)?.status)
 
     if (!type || type === 'deslogado')
         return null;

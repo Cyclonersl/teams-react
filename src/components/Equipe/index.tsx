@@ -6,7 +6,7 @@ import { FaArrowUp, FaSave } from "react-icons/fa"
 import { ListaServico } from './ListaServico';
 import QuantidadeSituacaoServico from '../QuantidadeSituacaoServico';
 import { EquipeHeader } from './EquipeHeader';
-import { useEffect } from 'react';
+import { memo, useEffect } from 'react';
 import { carregarServicos } from '../../app/slices/equipes';
 import { useAppDispatch } from '../../app/hooks';
 
@@ -14,7 +14,7 @@ interface ListaEquipeProps {
     id: number
 }
 
-function Equipe({ id }: ListaEquipeProps) {
+const Equipe = memo(function Equipe({ id }: ListaEquipeProps) {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
@@ -34,6 +34,6 @@ function Equipe({ id }: ListaEquipeProps) {
             </div>
         </Panel>
     </>
-}
+})
 
 export { Equipe }

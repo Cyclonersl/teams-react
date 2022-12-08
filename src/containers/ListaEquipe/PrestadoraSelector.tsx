@@ -2,14 +2,14 @@ import { Dropdown } from "primereact/dropdown";
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { carregarEquipes } from "../../app/slices/equipes";
-import { carregarPrestadoras, prestadoraAdapter } from "../../app/slices/prestadora";
+import { carregarPrestadoras, prestadoraAdapter, selectPrestadoras } from "../../app/slices/prestadora";
 import { PrestadoraModel } from "../../model/Prestadora";
 
 export function PrestadoraSelector() {
     const dispatch = useAppDispatch();
 
     const [selectedPrestadora, setSelectedPrestadora] = useState<PrestadoraModel>();
-    const prestadoras = useAppSelector(state => prestadoraAdapter.getSelectors().selectAll(state.prestadoras))
+    const prestadoras = useAppSelector(selectPrestadoras);
 
     useEffect(() => {
         dispatch(carregarPrestadoras());

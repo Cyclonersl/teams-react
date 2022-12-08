@@ -1,5 +1,6 @@
+import { RootState } from './../store';
 import { PrestadoraModel } from './../../model/Prestadora';
-import { createSlice, createAsyncThunk, createEntityAdapter, EntityState } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk, createEntityAdapter, EntityState, createSelector } from '@reduxjs/toolkit'
 import PrestadoraDataService from '../services/PrestadoraDataService';
 
 interface statePros extends EntityState<PrestadoraModel> {
@@ -43,3 +44,7 @@ const prestadoraSlice = createSlice({
 export default prestadoraSlice.reducer;
 
 //Selectors
+const selectSelf = (state: RootState) => state.prestadoras
+export const selectPrestadoras = createSelector(selectSelf, state => {
+    return prestadoraAdapter.getSelectors().selectAll(state);
+})

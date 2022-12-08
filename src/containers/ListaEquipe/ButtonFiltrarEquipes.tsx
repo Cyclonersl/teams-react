@@ -1,11 +1,12 @@
 import { FaFilter } from "react-icons/fa";
 import { useAppSelector } from "../../app/hooks";
-import { selectEquipesIdsPreferencia } from "../../app/slices/equipes";
+import { selectEquipesIdsPreferencia, selectQuantidadesEquipesSelecionadas } from "../../app/slices/equipes";
 
 export function ButtonFiltrarEquipes() {
 
-    const totalEquipes = useAppSelector(state => state.equipes.ids.length)
-    const equipesIds = useAppSelector(selectEquipesIdsPreferencia)
+    //const totalEquipes = useAppSelector(state => state.equipes.ids.length)
+    //const equipesIds = useAppSelector(selectEquipesIdsPreferencia)
+    const quantidadeEquipesSelecionadas = useAppSelector(selectQuantidadesEquipesSelecionadas)
 
     return (
         <a href="">
@@ -14,10 +15,10 @@ export function ButtonFiltrarEquipes() {
                     <FaFilter />
                 </span>
                 {
-                    equipesIds.length === equipesIds.length ?
+                    !quantidadeEquipesSelecionadas ?
                         <span className="text-12 font-bold">Filtrar Equipes</span>
                         :
-                        <span className="text-12 font-bold">{equipesIds.length} / {totalEquipes} selecionadas</span>
+                        <span className="text-12 font-bold">{quantidadeEquipesSelecionadas} selecionadas</span>
                 }
 
             </div>

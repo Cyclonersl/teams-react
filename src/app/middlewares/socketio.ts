@@ -1,9 +1,10 @@
+import { SituacaoEquipeMessage } from './../../model/SituacaoEquipeMessage';
 import { RootState } from '../store';
 import { Middleware } from '@reduxjs/toolkit';
 import { Dispatch } from '@reduxjs/toolkit';
 import SocketClient from '../socket';
 import { useAppSelector } from '../hooks';
-import { selectEquipesIdsPreferencia } from '../slices/equipes';
+import { selectEquipesIdsPreferencia, updateSituacaoEquipe } from '../slices/equipes';
 
 
 interface SocketMiddlewareParams {
@@ -20,7 +21,6 @@ export const socketMiddleware: Middleware<{}, RootState, Dispatch> = params => (
             next(action)
             const ids = selectEquipesIdsPreferencia(getState())
             SocketClient.getInstance().join(ids);
-
             break;
     }
     return next(action);

@@ -33,7 +33,10 @@ export default class SocketClient {
     }
 
     public on(channel: string, callback: (response: any) => void) {
-        this.socket.on(channel, (data: any) => callback(data))
+        this.socket.on(channel, (data: any) => {
+            console.log(data)
+            callback(data)
+        })
     }
 
     public static getInstance() {
