@@ -2,7 +2,9 @@ import { Button } from "primereact/button";
 import { Menu } from "primereact/menu";
 import { useRef } from "react";
 import { FaArrowDown, FaCog, FaSave } from "react-icons/fa";
+import { useDispatch } from "react-redux";
 import { useAppSelector } from "../../app/hooks";
+import { Dialogs, openDialog } from "../../app/slices/ui";
 import { ServiceRoundedCounter } from "./ServiceRoundedCounter";
 import { Status } from "./status";
 
@@ -12,6 +14,7 @@ interface EquipeHeaderProps {
 
 export function EquipeHeader({ id }: EquipeHeaderProps) {
 
+    const dispatch = useDispatch();
     const refMenuTeam = useRef<Menu>(null);
     const name = useAppSelector(state => state.equipes.entities[id]?.name)
 
@@ -42,7 +45,7 @@ export function EquipeHeader({ id }: EquipeHeaderProps) {
             label: 'Identificador de Login',
             icon: 'pi pi-qrcode',
             command: () => {
-                alert('click');
+                dispatch(openDialog(Dialogs.QRCODE))
             }
         },
         {

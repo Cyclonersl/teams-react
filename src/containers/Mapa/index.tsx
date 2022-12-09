@@ -9,7 +9,7 @@ import { Veiculo } from './Veiculo';
 import { Markers } from './Markers';
 import { useEffect } from 'react';
 import SocketClient from '../../app/socket';
-import { localizacaoUpdate } from '../../app/slices/localizacoes';
+import { localizacaoAdapter, localizacaoUpdate } from '../../app/slices/localizacoes';
 
 function Mapa() {
     const dispatch = useAppDispatch();

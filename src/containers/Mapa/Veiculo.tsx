@@ -1,17 +1,20 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 import L, { Marker } from 'leaflet'
 
-import { useAppSelector } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { useLeafletContext } from "@react-leaflet/core";
 import { markerCarro } from "./MarkerCarro";
+import { equipeAdapter } from "../../app/slices/equipes";
 
 interface VeiculoProps {
     id: number;
 }
 
 export function Veiculo({ id }: VeiculoProps) {
-    const cor = useAppSelector(state => state.equipes.entities[id]?.color);
+    const dispatch = useAppDispatch();
+    const cor = useAppSelector(state => equipeAdapter.getSelectors().selectById(state.equipes, id)?.color);
+    const situacao = useAppSelector(state => equipeAdapter.getSelectors().selectById(state.equipes, id)?.status);
     const localizacao = useAppSelector(state => state.localizacoes?.entities[id]);
     const context = useLeafletContext()
     const carroRef = useRef<Marker>();
@@ -47,6 +50,13 @@ export function Veiculo({ id }: VeiculoProps) {
                 container.removeLayer(carroRef.current)
         }
     }, [])
+
+    useEffect(() => {
+        if (situacao === "deslogado" && carroRef.current) {
+            container.removeLayer(carroRef.current);
+            carroRef.current = undefined;
+        }
+    }, [situacao])
 
     return (null);
 }

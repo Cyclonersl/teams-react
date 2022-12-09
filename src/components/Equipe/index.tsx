@@ -9,6 +9,7 @@ import { EquipeHeader } from './EquipeHeader';
 import { memo, useEffect } from 'react';
 import { carregarServicos } from '../../app/slices/equipes';
 import { useAppDispatch } from '../../app/hooks';
+import { Modals } from '../../containers/Modals';
 
 interface ListaEquipeProps {
     id: number
@@ -33,6 +34,8 @@ const Equipe = memo(function Equipe({ id }: ListaEquipeProps) {
                 <Button icon={<FaArrowUp />} className='flex-2' />
             </div>
         </Panel>
+
+        <Modals />
     </>
 })
 

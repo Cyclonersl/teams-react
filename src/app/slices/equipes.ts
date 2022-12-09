@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk, createEntityAdapter, EntityState, EntityId, PayloadAction } from '@reduxjs/toolkit'
 import { createSelector } from 'reselect'
-import { SituacaoEquipeMessage } from './../../model/SituacaoEquipeMessage';
 import { RootState } from './../store';
+import { SituacaoEquipeMessage } from './../../model/SituacaoEquipeMessage';
 import { PreferenciasModel } from './../../model/Preferencia';
 import { EquipeModel } from './../../model/Equipe';
 import EquipeDataService from '../services/EquipeDataService';
@@ -14,6 +14,7 @@ interface StateProps extends EntityState<EquipeModel> {
     carregandoPreferencias: boolean,
     carregandoServicos: boolean,
     error?: string
+    equipeSelecionada?: number
 }
 
 //AsyncThunk

@@ -48,14 +48,16 @@
             "id": 201,
             "name": "EquipeModel 1",
             "color": "#c2e1f6",
-            "status": "online",
+            "status": "deslogado",
+            "code": "CA-E9-5A-EC",
             "prestadoraId": 1
         },
         {
             "id": 2,
             "name": "EquipeModel 2",
             "color": "#5d6c76",
-            "status": "offline",
+            "status": "deslogado",
+            "code": "CA-E9-5A-EC",
             "prestadoraId": 1
         },
         {
@@ -63,6 +65,7 @@
             "name": "EquipeModel 3",
             "color": "#735d76",
             "status": "deslogado",
+            "code": "CA-E9-5A-EC",
             "prestadoraId": 1
         },
         {
@@ -70,6 +73,7 @@
             "name": "EquipeModel 4",
             "color": "#735176",
             "status": "deslogado",
+            "code": "CA-E9-5A-EC",
             "prestadoraId": 1
         },
         {
@@ -77,6 +81,7 @@
             "name": "EquipeModel 5",
             "color": "#732d76",
             "status": "deslogado",
+            "code": "CA-E9-5A-EC",
             "prestadoraId": 2
         },
         {
@@ -84,6 +89,7 @@
             "name": "EquipeModel 6",
             "color": "#732d76",
             "status": "deslogado",
+            "code": "CA-E9-5A-EC",
             "prestadoraId": 2
         }
     ],
