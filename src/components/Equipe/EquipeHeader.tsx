@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { FaArrowDown, FaCog, FaSave } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { useAppSelector } from "../../app/hooks";
+import { selecionaEquipe } from "../../app/slices/equipes";
 import { Dialogs, openDialog } from "../../app/slices/ui";
 import { ServiceRoundedCounter } from "./ServiceRoundedCounter";
 import { Status } from "./status";
@@ -45,7 +46,11 @@ export function EquipeHeader({ id }: EquipeHeaderProps) {
             label: 'Identificador de Login',
             icon: 'pi pi-qrcode',
             command: () => {
-                dispatch(openDialog(Dialogs.QRCODE))
+                Promise.resolve(
+                    dispatch(selecionaEquipe(id))
+                ).then(
+                    () => dispatch(openDialog(Dialogs.QRCODE))
+                )
             }
         },
         {

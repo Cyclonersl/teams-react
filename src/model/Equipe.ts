@@ -5,4 +5,5 @@ export interface EquipeModel {
     color: string;
     status: string;
     services?: ServicoProgramadoModel[];
+    code: string;
 }

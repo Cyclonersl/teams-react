@@ -101,17 +101,21 @@ const equipesSlice = createSlice({
                             'offline' : 'deslogado'
                 }
             })
+        },
+        selecionaEquipe: (state, action: PayloadAction<number | undefined>) => {
+            state.equipeSelecionada = action.payload;
         }
     }
 })
 
 
 export default equipesSlice.reducer;
-export const { updateSituacaoEquipe } = equipesSlice.actions
+export const { updateSituacaoEquipe, selecionaEquipe } = equipesSlice.actions
 
 //Selectors
 const preferenciaSelecionada = (state: RootState) => state.equipes.preferencia?.selecionada === undefined ? null : state.equipes.preferencia.preferencias.find(preferencia => preferencia.nome === state.equipes.preferencia?.selecionada)
 const allIds = (state: RootState) => state.equipes.ids
+
 export const selectEquipesIdsPreferencia = createSelector([preferenciaSelecionada, allIds],
     (preferenciaSelecionada, allIds) => {
         if (!preferenciaSelecionada)
@@ -137,3 +141,5 @@ export const selectServicosEquipe = (state: RootState, equipeId: Number) => {
 
     return servicos
 }
+
+export const selectEquipeSelecionada = (state: RootState) => !state.equipes.equipeSelecionada ? null : state.equipes.entities[state.equipes.equipeSelecionada];
