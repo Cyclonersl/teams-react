@@ -133,13 +133,31 @@ export const selectQuantidadesEquipesSelecionadas = createSelector([selectEquipe
         return selectEquipesIdsPreferencia.length + ' / ' + allIds.length;
     })
 
-export const selectServicosEquipe = (state: RootState, equipeId: Number) => {
+export const selectServicosEquipe = (state: RootState, equipeId: number) => {
     const servicos = equipeAdapter.getSelectors().selectById(state.equipes, equipeId as EntityId)?.services;
 
     if (!servicos)
         return [];
 
     return servicos
+}
+
+export const selectQuantidadeServicosExecutados = (state: RootState, equipeId: number) => {
+    const quantidade = equipeAdapter.getSelectors().selectById(state.equipes, equipeId as EntityId)?.quantidadeExecutados;
+
+    if (!quantidade)
+        return undefined
+
+    return quantidade;
+}
+
+export const selectQuantidadeServicosRecusados = (state: RootState, equipeId: number) => {
+    const quantidade = equipeAdapter.getSelectors().selectById(state.equipes, equipeId as EntityId)?.quantidadeRecusados;
+
+    if (!quantidade)
+        return undefined
+
+    return quantidade;
 }
 
 export const selectEquipeSelecionada = (state: RootState) => !state.equipes.equipeSelecionada ? null : state.equipes.entities[state.equipes.equipeSelecionada];

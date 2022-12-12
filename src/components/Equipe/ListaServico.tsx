@@ -9,7 +9,7 @@ interface ListaServicoProps {
 export function ListaServico({ id }: ListaServicoProps) {
     const servicos = useAppSelector(state => selectServicosEquipe(state, id));
 
-    return <div className="grid grid-flow-row gap-2 my-2">
+    return <div className="grid grid-flow-row gap-2 mb-2">
         {servicos?.map((servico, index) => <ServicoProgramado servico={servico} key={`equipe_${id}_servico_${index}`} />)}
     </div>
 }

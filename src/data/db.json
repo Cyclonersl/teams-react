@@ -50,7 +50,9 @@
             "color": "#c2e1f6",
             "status": "deslogado",
             "code": "CAE95AEC",
-            "prestadoraId": 1
+            "prestadoraId": 1,
+            "quantidadeExecutados": 0,
+            "quantidadeRecusados": 2
         },
         {
             "id": 2,
@@ -58,7 +60,9 @@
             "color": "#5d6c76",
             "status": "deslogado",
             "code": "AAAAAAAA",
-            "prestadoraId": 1
+            "prestadoraId": 1,
+            "quantidadeExecutados": 0,
+            "quantidadeRecusados": 0
         },
         {
             "id": 3,
@@ -66,7 +70,9 @@
             "color": "#735d76",
             "status": "deslogado",
             "code": "CAE95AEC",
-            "prestadoraId": 1
+            "prestadoraId": 1,
+            "quantidadeExecutados": 0,
+            "quantidadeRecusados": 0
         },
         {
             "id": 4,
@@ -74,7 +80,9 @@
             "color": "#735176",
             "status": "deslogado",
             "code": "CAE95AEC",
-            "prestadoraId": 1
+            "prestadoraId": 1,
+            "quantidadeExecutados": 2,
+            "quantidadeRecusados": 1
         },
         {
             "id": 5,
