@@ -20,6 +20,7 @@
     "react-icons": "^4.6.0",
     "react-leaflet": "^4.2.0",
     "react-redux": "^8.0.5",
+    "react-to-print": "^2.14.10",
     "socket.io-client": "^2.3.0"
   },
   "devDependencies": {
