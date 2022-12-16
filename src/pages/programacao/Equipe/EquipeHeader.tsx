@@ -4,7 +4,7 @@ import React, { useRef } from "react";
 import { FaArrowDown, FaCog, FaSave } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { useAppSelector } from "../../../app/hooks";
-import { selecionaEquipe } from "../../../app/slices/equipes";
+import { selecionaEquipe, toggleServicosMapa } from "../../../app/slices/equipes";
 import { Dialogs, openDialog } from "../../../app/slices/ui";
 import { ServiceRoundedCounter } from "./ServiceRoundedCounter";
 import { Status } from "./Status";
@@ -21,6 +21,16 @@ export const EquipeHeader = React.forwardRef(({ id, refSalvar }: EquipeHeaderPro
     const name = useAppSelector(state => state.equipes.entities[id]?.name)
 
 
+    /**
+     *       {
+                label: 'Atualizar Informações',
+                icon: 'pi pi-sync',
+                command: () => {
+                    alert('click');
+                }
+            },
+     */
+
     const menuItens = [
         {
             label: 'Minimizar equipe',
@@ -32,13 +42,6 @@ export const EquipeHeader = React.forwardRef(({ id, refSalvar }: EquipeHeaderPro
         {
             label: 'Enquadrar solicitações',
             icon: 'pi pi-map',
-            command: () => {
-                alert('click');
-            }
-        },
-        {
-            label: 'Atualizar Informações',
-            icon: 'pi pi-sync',
             command: () => {
                 alert('click');
             }
@@ -79,7 +82,7 @@ export const EquipeHeader = React.forwardRef(({ id, refSalvar }: EquipeHeaderPro
             label: 'Solicitações no mapa',
             icon: 'pi pi-map-marker',
             command: () => {
-                alert('click');
+                dispatch(toggleServicosMapa(id));
             }
         },
         {
@@ -103,13 +106,10 @@ export const EquipeHeader = React.forwardRef(({ id, refSalvar }: EquipeHeaderPro
                     <Button disabled
                         icon={<FaSave />}
                         className='w-2 h-6 flex justify-center items-center ' />
-
-                    <a href={`#button-down-${id}`}>
-                        <Button icon={<FaArrowDown />}
-                            id={`button-up-${id}`}
-                            className='w-2 h-6 flex justify-center items-center '
-                            onClick={() => refSalvar?.current?.scrollIntoView()} />
-                    </a>
+                    <Button icon={<FaArrowDown />}
+                        id={`button-up-${id}`}
+                        className='w-2 h-6 flex justify-center items-center '
+                        onClick={() => refSalvar?.current?.scrollIntoView()} />
                     <Button
                         icon={<FaCog />}
                         className='w-2 h-6 flex justify-center items-center'

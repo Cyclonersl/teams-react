@@ -1,4 +1,5 @@
 export interface ServicoModel {
+    id: string;
     dtHoraSoltcao: string;
     nrMatriculaColaborador: number;
     tpColaborador: string;

@@ -13,12 +13,14 @@ interface MarkersProps {
 export function MarkersServicos({ id }: MarkersProps) {
     const servicos = useAppSelector(state => state.equipes.entities[id]?.services);
     const corFundo = useAppSelector(state => state.equipes.entities[id]?.color);
+    let mostrarServicos = useAppSelector(state => state.equipes.entities[id]?.mostrarServicos);
     const context = useLeafletContext()
     const layerGroup = L.layerGroup();
 
     useEffect(() => {
         const container = context.layerContainer || context.map;
-        if (servicos && corFundo) {
+        mostrarServicos = mostrarServicos === undefined ? true : mostrarServicos;
+        if (servicos && corFundo && mostrarServicos) {
             servicos.forEach((servico, index) => {
                 const marker = L.marker(L.latLng(servico.coordenadas.lat, servico.coordenadas.lng), {
                     icon: markerServico({
@@ -38,7 +40,7 @@ export function MarkersServicos({ id }: MarkersProps) {
         return () => {
             container.removeLayer(layerGroup);
         }
-    }, [servicos])
+    }, [servicos, mostrarServicos])
 
     return null;
 }

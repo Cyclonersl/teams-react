@@ -8,4 +8,5 @@ export interface EquipeModel {
     quantidadeExecutados?: number;
     quantidadeRecusados?: number;
     code: string;
+    mostrarServicos: boolean;
 }

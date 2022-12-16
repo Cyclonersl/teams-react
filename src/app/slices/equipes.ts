@@ -81,6 +81,12 @@ const equipesSlice = createSlice({
         })
 
         builder.addCase(carregarServicos.fulfilled, (state, { payload }) => {
+
+            const servicos = payload.servicos;
+            servicos.forEach(servico => {
+                servico.id = servico.dtHoraSoltcao + "_" + servico.nrMatriculaColaborador + "_" + servico.tpColaborador
+            })
+
             equipeAdapter.updateOne(state, {
                 id: payload.equipeId,
                 changes: {
@@ -102,6 +108,16 @@ const equipesSlice = createSlice({
                 }
             })
         },
+        toggleServicosMapa: (state, action: PayloadAction<number>) => {
+            const value = state.entities[action.payload] ? !state.entities[action.payload]?.mostrarServicos : true;
+
+            equipeAdapter.updateOne(state, {
+                id: action.payload,
+                changes: {
+                    mostrarServicos: value
+                }
+            })
+        },
         selecionaEquipe: (state, action: PayloadAction<number | undefined>) => {
             state.equipeSelecionada = action.payload;
         }
@@ -110,7 +126,7 @@ const equipesSlice = createSlice({
 
 
 export default equipesSlice.reducer;
-export const { updateSituacaoEquipe, selecionaEquipe } = equipesSlice.actions
+export const { updateSituacaoEquipe, selecionaEquipe, toggleServicosMapa } = equipesSlice.actions
 
 //Selectors
 const preferenciaSelecionada = (state: RootState) => state.equipes.preferencia?.selecionada === undefined ? null : state.equipes.preferencia.preferencias.find(preferencia => preferencia.nome === state.equipes.preferencia?.selecionada)
